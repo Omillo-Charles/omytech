@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { 
   Mail, 
@@ -9,7 +9,6 @@ import {
   Linkedin, 
   Instagram,
   ArrowUp,
-  Heart
 } from 'lucide-react';
 import Logo from './Logo';
 
@@ -58,6 +57,7 @@ const Footer = () => {
     { icon: Instagram, href: '#', name: 'Instagram' }
   ];
 
+  const currentYear = new Date;
   return (
     <footer className="bg-black text-white relative border-t border-cyan-500/20">
       {/* Back to Top Button */}
@@ -86,15 +86,15 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-cyan-400" />
-                <span className="text-gray-300">hello@omy-tech.com</span>
+                <span className="text-gray-300">info@omytech.com</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-cyan-400" />
-                <span className="text-gray-300">+1 (555) 123-4567</span>
+                <span className="text-gray-300">+254 745 511 354</span>
               </div>
               <div className="flex items-center space-x-3">
                 <MapPin className="w-5 h-5 text-cyan-400" />
-                <span className="text-gray-300">Tech City, TC 12345</span>
+                <span className="text-gray-300">UpperHill, Nairobi</span>
               </div>
             </div>
           </div>
@@ -213,10 +213,9 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <span className="text-gray-400">
-                © 2024 OMY-TECH. Made with
+                © {currentYear.getFullYear()} OMY-TECH. 
               </span>
-              <Heart className="w-4 h-4 text-red-500 fill-current" />
-              <span className="text-gray-400">for digital excellence.</span>
+              <span className="text-gray-400">All Rights Reserved.</span>
             </div>
             
             <div className="flex items-center space-x-6">
