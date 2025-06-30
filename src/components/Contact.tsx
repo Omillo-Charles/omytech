@@ -29,19 +29,19 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      value: 'hello@pixelforge.com',
+      value: 'contact@omytech.com',
       description: 'Send us an email anytime!'
     },
     {
       icon: Phone,
       title: 'Call Us',
-      value: '+1 (555) 123-4567',
+      value: '+254 745 511 354',
       description: 'Mon-Fri 9am-6pm EST'
     },
     {
       icon: MapPin,
       title: 'Visit Us',
-      value: '123 Innovation Street, Tech City, TC 12345',
+      value: 'Upperhill, Nairobi',
       description: 'Our creative headquarters'
     }
   ];
