@@ -13,9 +13,13 @@ const Contact = () => {
   });
 
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [status, setStatus] = useState<'idle' | 'success' | 'error'>("idle");
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setStatus("idle");
+    setErrorMsg("");
     try {
       const response = await fetch('https://omytech-backend.onrender.com/api/contact', {
         method: 'POST',
@@ -26,8 +30,10 @@ const Contact = () => {
       });
       if (response.ok) {
         setIsSubmitted(true);
+        setStatus("success");
         setTimeout(() => {
           setIsSubmitted(false);
+          setStatus("idle");
           setFormData({
             name: '',
             email: '',
@@ -40,10 +46,12 @@ const Contact = () => {
         }, 3000);
       } else {
         const data = await response.json();
-        alert(data.error || 'Failed to send message.');
+        setStatus("error");
+        setErrorMsg(data.error || 'Failed to send message.');
       }
     } catch (error) {
-      alert('Failed to send message.');
+      setStatus("error");
+      setErrorMsg('Failed to send message.');
     }
   };
 
@@ -233,7 +241,12 @@ const Contact = () => {
                   <h3 className="text-2xl font-bold text-white mb-2">🚀 Launch Your Project</h3>
                   <p className="text-gray-300">Fill out the form below and let's create something amazing together!</p>
                 </div>
-                
+                {status === 'success' && (
+                  <div className="mb-4 p-4 rounded bg-green-600/20 text-green-400 font-semibold text-center">Your message was sent successfully!</div>
+                )}
+                {status === 'error' && (
+                  <div className="mb-4 p-4 rounded bg-red-600/20 text-red-400 font-semibold text-center">{errorMsg}</div>
+                )}
                 <form onSubmit={handleSubmit} className="space-y-6">
                   {/* Name and Email */}
                   <div className="grid md:grid-cols-2 gap-6">
