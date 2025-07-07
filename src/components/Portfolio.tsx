@@ -8,88 +8,99 @@ const Portfolio = () => {
     { id: 'all', name: 'All Projects' },
     { id: 'web', name: 'Web Development' },
     { id: 'mobile', name: 'Mobile Apps' },
-    { id: 'design', name: 'UI/UX Design' },
+    { id: 'ai', name: 'AI Projects' },
     { id: 'ecommerce', name: 'E-commerce' }
   ];
 
   const projects = [
     {
       id: 1,
-      title: 'TechCorp Website',
+      title: 'Nairobi Smart Travel Assistant',
       category: 'web',
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Modern corporate website with advanced animations and CMS integration.',
-      tech: ['React', 'Next.js', 'Tailwind CSS', 'Strapi'],
-      liveUrl: '#',
-      githubUrl: '#',
-      views: '2.4k'
+      image: 'https://images.pexels.com/photos/757889/pexels-photo-757889.jpeg?auto=compress&cs=tinysrgb&w=800',
+      description: 'Smart travel assistant for Nairobi using Bolt API to suggest optimal routes.',
+      tech: ['React', 'Tailwind', 'Bolt API', 'Firebase'],
+      liveUrl: 'https://nairobi-travel.vercel.app',
+      githubUrl: 'https://github.com/omillocharles/nairobi-smart-travel',
+      views: '2.9k'
     },
     {
       id: 2,
-      title: 'FinanceApp Mobile',
-      category: 'mobile',
-      image: 'https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Comprehensive mobile banking app with real-time analytics and secure transactions.',
-      tech: ['React Native', 'Node.js', 'PostgreSQL', 'Firebase'],
-      liveUrl: '#',
-      githubUrl: '#',
-      views: '3.1k'
+      title: 'SignBridge AI',
+      category: 'ai',
+      image: 'https://images.pexels.com/photos/4144091/pexels-photo-4144091.jpeg?auto=compress&cs=tinysrgb&w=800',
+      description: 'AI assistant that translates sign language to English in real-time.',
+      tech: ['Next.js', 'Tailwind', 'TensorFlow', 'Vercel'],
+      liveUrl: 'https://signbridgeai.vercel.app',
+      githubUrl: 'https://github.com/omillocharles/signbridgeai',
+      views: '3.5k'
     },
     {
       id: 3,
-      title: 'E-commerce Platform',
-      category: 'ecommerce',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Full-featured online store with payment processing and inventory management.',
-      tech: ['Vue.js', 'Laravel', 'MySQL', 'Stripe'],
-      liveUrl: '#',
-      githubUrl: '#',
-      views: '1.8k'
+      title: 'OMYTECH Website',
+      category: 'web',
+      image: 'https://images.pexels.com/photos/160107/pexels-photo-160107.jpeg?auto=compress&cs=tinysrgb&w=800',
+      description: 'Official website for OMYTECH — a digital agency for modern web solutions.',
+      tech: ['Next.js', 'Tailwind CSS', 'Vercel'],
+      liveUrl: 'https://omytech.vercel.app',
+      githubUrl: 'https://github.com/omillocharles/omytech',
+      views: '4.1k'
     },
     {
       id: 4,
-      title: 'SaaS Dashboard',
+      title: 'Nexus Academy Platform',
       category: 'web',
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Analytics dashboard for SaaS companies with real-time data visualization.',
-      tech: ['React', 'D3.js', 'Node.js', 'MongoDB'],
-      liveUrl: '#',
-      githubUrl: '#',
-      views: '2.7k'
+      image: 'https://images.pexels.com/photos/4145196/pexels-photo-4145196.jpeg?auto=compress&cs=tinysrgb&w=800',
+      description: 'Online learning platform for Nexus Academy with student/teacher access.',
+      tech: ['React', 'Firebase', 'Tailwind CSS'],
+      liveUrl: 'https://nexusacademy.vercel.app',
+      githubUrl: 'https://github.com/omillocharles/nexus-academy',
+      views: '2.3k'
     },
     {
       id: 5,
-      title: 'Travel App Design',
-      category: 'design',
-      image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Complete UI/UX design for a travel booking application.',
-      tech: ['Figma', 'Adobe XD', 'Principle', 'InVision'],
+      title: 'Chama Management Platform',
+      category: 'web',
+      image: 'https://images.pexels.com/photos/3182765/pexels-photo-3182765.jpeg?auto=compress&cs=tinysrgb&w=800',
+      description: 'A chama savings and contribution management system with member features.',
+      tech: ['React', 'Firebase', 'Tailwind'],
       liveUrl: '#',
-      githubUrl: '#',
-      views: '4.2k'
+      githubUrl: 'https://github.com/omillocharles/chama-platform',
+      views: '1.6k'
     },
     {
       id: 6,
-      title: 'Health Tracker',
-      category: 'mobile',
-      image: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800',
-      description: 'Health and fitness tracking app with AI-powered recommendations.',
-      tech: ['Flutter', 'Firebase', 'TensorFlow', 'GraphQL'],
+      title: 'E-Commerce Template',
+      category: 'ecommerce',
+      image: 'https://images.pexels.com/photos/5632384/pexels-photo-5632384.jpeg?auto=compress&cs=tinysrgb&w=800',
+      description: 'Responsive e-commerce website template with cart, checkout and payment.',
+      tech: ['Next.js', 'Stripe', 'Tailwind CSS'],
       liveUrl: '#',
-      githubUrl: '#',
-      views: '1.9k'
+      githubUrl: 'https://github.com/omillocharles/ecommerce-template',
+      views: '2.1k'
+    },
+    {
+      id: 7,
+      title: 'ShopSphere E-Commerce',
+      category: 'ecommerce',
+      image: 'https://images.pexels.com/photos/5632384/pexels-photo-5632384.jpeg?auto=compress&cs=tinysrgb&w=800',
+      description: 'Full-stack e-commerce platform with admin dashboard, cart, and Stripe integration.',
+      tech: ['React', 'MongoDB', 'Express', 'Stripe'],
+      liveUrl: 'https://shop-sphere-2n6k.vercel.app/',
+      githubUrl: 'https://github.com/Anwishta/ShopSphere',
+      views: '5.3k'
     }
   ];
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
+  const filteredProjects = activeFilter === 'all'
+    ? projects
     : projects.filter(project => project.category === activeFilter);
 
   return (
     <section id="portfolio" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <div className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full text-sm font-medium mb-4">
             Our Work
           </div>
@@ -102,7 +113,7 @@ const Portfolio = () => {
         </div>
 
         {/* Filter Buttons */}
-        <div className="flex flex-wrap justify-center gap-4 mb-12">
+        <div className="flex flex-col items-center sm:flex-row sm:flex-wrap sm:justify-center gap-4 mb-12 mt-8">
           {filters.map((filter) => (
             <button
               key={filter.id}
@@ -133,18 +144,20 @@ const Portfolio = () => {
                   className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-500"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                
+
                 {/* Overlay Buttons */}
                 <div className="absolute inset-0 flex items-center justify-center space-x-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <a
                     href={project.liveUrl}
                     className="bg-white text-gray-900 p-3 rounded-full hover:bg-blue-600 hover:text-white transition-colors duration-200"
+                    target="_blank" rel="noopener noreferrer"
                   >
                     <ExternalLink className="w-5 h-5" />
                   </a>
                   <a
                     href={project.githubUrl}
                     className="bg-white text-gray-900 p-3 rounded-full hover:bg-purple-600 hover:text-white transition-colors duration-200"
+                    target="_blank" rel="noopener noreferrer"
                   >
                     <Github className="w-5 h-5" />
                   </a>

@@ -9,6 +9,12 @@ import About from './pages/About';
 import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
 import Blog from './pages/Blog';
+import ServiceWebDevelopment from './pages/ServiceWebDevelopment';
+import ServiceMobileAppDevelopment from './pages/ServiceMobileAppDevelopment';
+import ServiceUIDesign from './pages/ServiceUIDesign';
+import ServiceDigitalMarketing from './pages/ServiceDigitalMarketing';
+import ServiceEcommerce from './pages/ServiceEcommerce';
+import ServiceConsulting from './pages/ServiceConsulting';
 
 // Component to handle scroll to top on route change
 const ScrollToTop = () => {
@@ -32,6 +38,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/services" element={<Services />} />
+            <Route path="/services/web-development" element={<ServiceWebDevelopment />} />
+            <Route path="/services/mobile-app-development" element={<ServiceMobileAppDevelopment />} />
+            <Route path="/services/ui-ux-design" element={<ServiceUIDesign />} />
+            <Route path="/services/digital-marketing" element={<ServiceDigitalMarketing />} />
+            <Route path="/services/ecommerce" element={<ServiceEcommerce />} />
+            <Route path="/services/consulting" element={<ServiceConsulting />} />
             <Route path="/portfolio" element={<Portfolio />} />
             <Route path="/about" element={<About />} />
             <Route path="/pricing" element={<Pricing />} />

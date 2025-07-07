@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Check, Star, Zap, Crown, ArrowRight } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Pricing = () => {
   const plans = [
     {
       name: 'Starter',
       icon: Star,
-      price: 2999,
+      price: 299,
       period: 'project',
       description: 'Perfect for small businesses and startups looking to establish their digital presence.',
       features: [
@@ -26,7 +27,7 @@ const Pricing = () => {
     {
       name: 'Professional',
       icon: Zap,
-      price: 5999,
+      price: 599,
       period: 'project',
       description: 'Ideal for growing businesses that need advanced features and functionality.',
       features: [
@@ -48,7 +49,7 @@ const Pricing = () => {
     {
       name: 'Enterprise',
       icon: Crown,
-      price: 12999,
+      price: 1299,
       period: 'project',
       description: 'Comprehensive solution for large organizations with complex requirements.',
       features: [
@@ -72,13 +73,16 @@ const Pricing = () => {
   ];
 
   const addOns = [
-    { name: 'Mobile App Development', price: 4999, description: 'Native iOS and Android apps' },
-    { name: 'Advanced Analytics Setup', price: 999, description: 'Custom tracking and reporting' },
-    { name: 'SEO Optimization Package', price: 1499, description: 'Comprehensive SEO strategy' },
-    { name: 'Maintenance Package', price: 299, description: 'Monthly updates and support' },
-    { name: 'Content Creation', price: 199, description: 'Per page content writing' },
-    { name: 'Logo & Brand Design', price: 899, description: 'Complete brand identity' }
+    { name: 'Mobile App Development', price: 499, description: 'Native iOS and Android apps' },
+    { name: 'Advanced Analytics Setup', price: 99, description: 'Custom tracking and reporting' },
+    { name: 'SEO Optimization Package', price: 149, description: 'Comprehensive SEO strategy' },
+    { name: 'Maintenance Package', price: 99, description: 'Monthly updates and support' },
+    { name: 'Content Creation', price: 99, description: 'Per page content writing' },
+    { name: 'Logo & Brand Design', price: 199, description: 'Complete brand identity' }
   ];
+
+  const [selectedAddOns, setSelectedAddOns] = useState<number[]>([]);
+  const navigate = useNavigate();
 
   return (
     <div className="pt-20">
@@ -155,15 +159,16 @@ const Pricing = () => {
                     </div>
 
                     {/* CTA Button */}
-                    <button
-                      className={`w-full py-4 px-6 rounded-full font-semibold transition-all duration-200 ${
+                    <Link
+                      to="/contact"
+                      className={`block w-full py-4 px-6 rounded-full font-semibold text-center transition-all duration-200 ${
                         plan.popular
                           ? 'bg-gradient-to-r from-purple-600 to-pink-600 text-white hover:shadow-xl transform hover:scale-105'
                           : 'bg-gray-100 text-gray-900 hover:bg-gray-200'
                       }`}
                     >
                       Get Started
-                    </button>
+                    </Link>
                   </div>
                 </div>
               );
@@ -190,8 +195,17 @@ const Pricing = () => {
                   <div className="text-2xl font-bold text-blue-600">${addon.price}</div>
                 </div>
                 <p className="text-gray-600 mb-4">{addon.description}</p>
-                <button className="w-full bg-blue-50 text-blue-600 py-2 px-4 rounded-lg font-medium hover:bg-blue-100 transition-colors duration-200">
-                  Add to Project
+                <button
+                  className={`w-full py-2 px-4 rounded-lg font-medium transition-colors duration-200 ${
+                    selectedAddOns.includes(index)
+                      ? 'bg-blue-600 text-white' 
+                      : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
+                  }`}
+                  onClick={() => {
+                    navigate(`/contact?addon=${encodeURIComponent(addon.name)}`);
+                  }}
+                >
+                  {selectedAddOns.includes(index) ? 'Added!' : 'Add to Project'}
                 </button>
               </div>
             ))}
@@ -251,13 +265,13 @@ const Pricing = () => {
             Choose your package and let's begin building something amazing together.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 flex items-center justify-center space-x-2">
+            <Link to="/contact" className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-100 transition-colors duration-200 flex items-center justify-center space-x-2">
               <span>Start Your Project</span>
               <ArrowRight className="w-5 h-5" />
-            </button>
-            <button className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-colors duration-200">
+            </Link>
+            <Link to="/contact" className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold hover:bg-white/10 transition-colors duration-200 flex items-center justify-center">
               Schedule Consultation
-            </button>
+            </Link>
           </div>
         </div>
       </section>

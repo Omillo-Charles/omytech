@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { ExternalLink, Github, Eye, Filter } from 'lucide-react';
 
 const Portfolio = () => {
-  const [activeFilter, setActiveFilter] = useState('all');
+  const [activeFilter, setActiveFilter] = React.useState('all');
 
   const filters = [
     { id: 'all', name: 'All Projects' },
@@ -17,7 +17,7 @@ const Portfolio = () => {
       id: 1,
       title: 'TechCorp Enterprise Platform',
       category: 'web',
-      image: 'https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80',
       description: 'A comprehensive enterprise platform with advanced analytics, real-time collaboration, and seamless integrations.',
       tech: ['React', 'Next.js', 'TypeScript', 'Node.js', 'PostgreSQL'],
       liveUrl: '#',
@@ -29,7 +29,7 @@ const Portfolio = () => {
       id: 2,
       title: 'FinanceFlow Mobile App',
       category: 'mobile',
-      image: 'https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80',
       description: 'Revolutionary mobile banking app with AI-powered insights and biometric security.',
       tech: ['React Native', 'Node.js', 'MongoDB', 'Firebase', 'TensorFlow'],
       liveUrl: '#',
@@ -41,7 +41,7 @@ const Portfolio = () => {
       id: 3,
       title: 'ShopSphere E-commerce',
       category: 'ecommerce',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: 'https://images.unsplash.com/photo-1515168833906-d2a3b82b302b?auto=format&fit=crop&w=800&q=80',
       description: 'Multi-vendor marketplace with advanced search, AR try-on, and personalized recommendations.',
       tech: ['Vue.js', 'Laravel', 'MySQL', 'Stripe', 'AWS'],
       liveUrl: '#',
@@ -53,7 +53,7 @@ const Portfolio = () => {
       id: 4,
       title: 'DataViz Dashboard',
       category: 'web',
-      image: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: 'https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=800&q=80',
       description: 'Real-time analytics dashboard with interactive visualizations and predictive modeling.',
       tech: ['React', 'D3.js', 'Python', 'FastAPI', 'Redis'],
       liveUrl: '#',
@@ -65,7 +65,7 @@ const Portfolio = () => {
       id: 5,
       title: 'TravelMate App Design',
       category: 'design',
-      image: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: 'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=800&q=80',
       description: 'Complete UI/UX design system for a travel planning and booking application.',
       tech: ['Figma', 'Adobe XD', 'Principle', 'Framer', 'Sketch'],
       liveUrl: '#',
@@ -77,7 +77,7 @@ const Portfolio = () => {
       id: 6,
       title: 'HealthTracker Pro',
       category: 'mobile',
-      image: 'https://images.pexels.com/photos/3184317/pexels-photo-3184317.jpeg?auto=compress&cs=tinysrgb&w=800',
+      image: 'https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=800&q=80',
       description: 'Comprehensive health monitoring app with wearable integration and AI coaching.',
       tech: ['Flutter', 'Firebase', 'TensorFlow', 'HealthKit', 'GraphQL'],
       liveUrl: '#',
@@ -180,9 +180,11 @@ const Portfolio = () => {
             <h2 className="text-3xl font-bold text-gray-900">All Projects</h2>
             
             {/* Filter Buttons */}
-            <div className="flex items-center space-x-4">
-              <Filter className="w-5 h-5 text-gray-500" />
-              <div className="flex flex-wrap gap-2">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4 gap-4 sm:gap-0 w-full sm:w-auto">
+              <div className="flex justify-center sm:justify-start mb-2 sm:mb-0">
+                <Filter className="w-5 h-5 text-gray-500" />
+              </div>
+              <div className="flex flex-col sm:flex-row flex-wrap gap-2 items-center justify-center">
                 {filters.map((filter) => (
                   <button
                     key={filter.id}

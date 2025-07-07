@@ -1,58 +1,59 @@
 import React from 'react';
 import { Users, Award, Target, Heart, Linkedin, Twitter, Github, Mail } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const About = () => {
   const team = [
     {
-      name: 'Alex Chen',
+      name: 'Omillo Charles',
       position: 'Founder & CEO',
-      avatar: 'https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Visionary leader with 10+ years of experience in digital transformation and startup growth.',
-      skills: ['Strategic Leadership', 'Full-Stack Development', 'Business Development', 'Team Building'],
+      avatar: 'OC',
+      bio: 'Visionary leader with a passion for digital innovation and business growth.',
+      skills: ['Leadership', 'Strategy', 'Full-Stack Development', 'Business Growth'],
       social: {
         linkedin: '#',
         twitter: '#',
         github: '#',
-        email: 'alex@omy-tech.com'
+        email: 'omillo@omy-tech.com'
       }
     },
     {
-      name: 'Sarah Johnson',
-      position: 'Creative Director',
-      avatar: 'https://images.pexels.com/photos/3184339/pexels-photo-3184339.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Award-winning designer passionate about creating beautiful and intuitive user experiences.',
-      skills: ['UI/UX Design', 'Brand Strategy', 'Design Systems', 'Creative Direction'],
-      social: {
-        linkedin: '#',
-        twitter: '#',
-        github: '#',
-        email: 'sarah@omy-tech.com'
-      }
-    },
-    {
-      name: 'Marcus Rodriguez',
+      name: 'Caredge Ombikhwa',
       position: 'Technical Lead',
-      avatar: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Full-stack architect specializing in scalable solutions and emerging technologies.',
-      skills: ['System Architecture', 'Cloud Computing', 'DevOps', 'Mobile Development'],
+      avatar: 'CO',
+      bio: 'Expert in scalable systems and emerging technologies, driving technical excellence.',
+      skills: ['System Architecture', 'Cloud', 'DevOps', 'Mobile Development'],
       social: {
         linkedin: '#',
         twitter: '#',
         github: '#',
-        email: 'marcus@omy-tech.com'
+        email: 'caredge@omy-tech.com'
       }
     },
     {
-      name: 'Emily Zhang',
+      name: 'Christopher Musyoki',
+      position: 'Creative Director',
+      avatar: 'CM',
+      bio: 'Award-winning designer focused on beautiful, intuitive user experiences.',
+      skills: ['UI/UX Design', 'Branding', 'Design Systems', 'Creative Direction'],
+      social: {
+        linkedin: '#',
+        twitter: '#',
+        github: '#',
+        email: 'christopher@omy-tech.com'
+      }
+    },
+    {
+      name: 'Japhet Bugaga',
       position: 'Growth Strategist',
-      avatar: 'https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=400',
-      bio: 'Data-driven marketer focused on sustainable growth and customer success.',
+      avatar: 'JB',
+      bio: 'Data-driven marketer dedicated to sustainable growth and client success.',
       skills: ['Digital Marketing', 'Analytics', 'Growth Hacking', 'Customer Success'],
       social: {
         linkedin: '#',
         twitter: '#',
         github: '#',
-        email: 'emily@omy-tech.com'
+        email: 'japhet@omy-tech.com'
       }
     }
   ];
@@ -202,12 +203,9 @@ const About = () => {
                 className="bg-gradient-to-br from-gray-900/50 to-black/50 backdrop-blur-md border border-cyan-500/20 rounded-2xl p-6 hover:border-cyan-400/50 hover:shadow-2xl hover:shadow-cyan-500/10 transition-all duration-300 transform hover:-translate-y-2 text-center"
               >
                 <div className="relative mb-6">
-                  <img
-                    src={member.avatar}
-                    alt={member.name}
-                    className="w-24 h-24 rounded-full object-cover mx-auto"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full"></div>
+                  <div className="w-24 h-24 rounded-full mx-auto flex items-center justify-center text-3xl font-bold text-white bg-gradient-to-br from-cyan-500 to-purple-600">
+                    {member.avatar}
+                  </div>
                 </div>
 
                 <h3 className="text-xl font-bold text-white mb-1">{member.name}</h3>
@@ -266,9 +264,9 @@ const About = () => {
           <p className="text-xl text-gray-300 mb-8">
             Let's discuss how we can help bring your digital vision to life.
           </p>
-          <button className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl hover:shadow-cyan-500/25 transform hover:scale-105 transition-all duration-200">
+          <Link to="/contact" className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold hover:shadow-xl hover:shadow-cyan-500/25 transform hover:scale-105 transition-all duration-200 inline-block">
             Start a Conversation
-          </button>
+          </Link>
         </div>
       </section>
     </div>

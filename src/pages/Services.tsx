@@ -1,5 +1,6 @@
 import React from 'react';
 import { Code, Smartphone, Palette, TrendingUp, Globe, Zap, ArrowRight, CheckCircle } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const Services = () => {
   const services = [
@@ -9,7 +10,7 @@ const Services = () => {
       description: 'Custom websites and web applications built with modern technologies like React, Next.js, and Node.js.',
       features: ['Responsive Design', 'SEO Optimized', 'Fast Loading', 'Secure', 'CMS Integration', 'E-commerce Ready'],
       color: 'from-cyan-500 to-blue-500',
-      price: 'Starting at $2,999'
+      price: 'Starting at $299'
     },
     {
       icon: Smartphone,
@@ -17,7 +18,7 @@ const Services = () => {
       description: 'Native and cross-platform mobile applications that deliver exceptional user experiences.',
       features: ['iOS & Android', 'React Native', 'Flutter', 'API Integration', 'Push Notifications', 'App Store Optimization'],
       color: 'from-purple-500 to-pink-500',
-      price: 'Starting at $4,999'
+      price: 'Starting at $499'
     },
     {
       icon: Palette,
@@ -25,7 +26,7 @@ const Services = () => {
       description: 'Beautiful, intuitive designs that engage users and drive conversions.',
       features: ['User Research', 'Prototyping', 'Design Systems', 'Usability Testing', 'Brand Identity', 'Interactive Design'],
       color: 'from-pink-500 to-rose-500',
-      price: 'Starting at $1,999'
+      price: 'Starting at $199'
     },
     {
       icon: TrendingUp,
@@ -33,7 +34,7 @@ const Services = () => {
       description: 'Data-driven marketing strategies to grow your online presence and reach your target audience.',
       features: ['SEO/SEM', 'Social Media', 'Content Marketing', 'Analytics', 'PPC Campaigns', 'Email Marketing'],
       color: 'from-green-500 to-teal-500',
-      price: 'Starting at $1,499/month'
+      price: 'Starting at $149/month'
     },
     {
       icon: Globe,
@@ -41,7 +42,7 @@ const Services = () => {
       description: 'Complete online stores with payment processing, inventory management, and customer analytics.',
       features: ['Payment Gateway', 'Inventory System', 'Admin Dashboard', 'Mobile Optimized', 'Multi-currency', 'Analytics'],
       color: 'from-orange-500 to-red-500',
-      price: 'Starting at $3,999'
+      price: 'Starting at $399'
     },
     {
       icon: Zap,
@@ -114,10 +115,21 @@ const Services = () => {
                   </div>
 
                   {/* CTA */}
-                  <button className={`w-full bg-gradient-to-r ${service.color} text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-2`}>
+                  <Link
+                    to={
+                      service.title === 'Web Development' ? '/services/web-development' :
+                      service.title === 'Mobile App Development' ? '/services/mobile-app-development' :
+                      service.title === 'UI/UX Design' ? '/services/ui-ux-design' :
+                      service.title === 'Digital Marketing' ? '/services/digital-marketing' :
+                      service.title === 'E-commerce Solutions' ? '/services/ecommerce' :
+                      service.title === 'Consulting & Strategy' ? '/services/consulting' :
+                      '#'
+                    }
+                    className={`w-full bg-gradient-to-r ${service.color} text-white py-3 px-6 rounded-lg font-semibold hover:shadow-lg transition-all duration-200 flex items-center justify-center space-x-2`}
+                  >
                     <span>Learn More</span>
                     <ArrowRight className="w-4 h-4" />
-                  </button>
+                  </Link>
                 </div>
               );
             })}
