@@ -195,18 +195,7 @@ const Pricing = () => {
                   <div className="text-2xl font-bold text-blue-600">${addon.price}</div>
                 </div>
                 <p className="text-gray-600 mb-4">{addon.description}</p>
-                <button
-                  className={`w-full py-2 px-4 rounded-lg font-medium transition-colors duration-200 ${
-                    selectedAddOns.includes(index)
-                      ? 'bg-blue-600 text-white' 
-                      : 'bg-blue-50 text-blue-600 hover:bg-blue-100'
-                  }`}
-                  onClick={() => {
-                    navigate(`/contact?addon=${encodeURIComponent(addon.name)}`);
-                  }}
-                >
-                  {selectedAddOns.includes(index) ? 'Added!' : 'Add to Project'}
-                </button>
+                {/* Removed Add to Project button, price is now shown above */}
               </div>
             ))}
           </div>

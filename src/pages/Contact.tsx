@@ -67,9 +67,9 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      value: 'contact@omytech.com',
+      value: 'contact@omytech.com', // UI email
       description: 'Send us an email anytime!',
-      action: 'mailto:contact@omytech.com'
+      action: 'mailto:omytechkenya@gmail.com' // real email
     },
     {
       icon: Phone,
@@ -97,11 +97,13 @@ const Contact = () => {
   ];
 
   const budgetRanges = [
-    'Under $5,000',
-    '$5,000 - $15,000',
-    '$15,000 - $50,000',
-    '$50,000 - $100,000',
-    'Over $100,000'
+    'Under $299',
+    '$299 – $499',
+    '$500 – $699',
+    '$700 – $899',
+    '$900 – $1099',
+    '$1100 – $1299',
+    'Above $1299'
   ];
 
   const timelines = [

@@ -14,7 +14,7 @@ const About = () => {
         linkedin: '#',
         twitter: '#',
         github: '#',
-        email: 'omillo@omy-tech.com'
+        email: 'omillo@omytech.com'
       }
     },
     {
@@ -27,7 +27,7 @@ const About = () => {
         linkedin: '#',
         twitter: '#',
         github: '#',
-        email: 'caredge@omy-tech.com'
+        email: 'caredge@omytech.com'
       }
     },
     {
@@ -40,7 +40,7 @@ const About = () => {
         linkedin: '#',
         twitter: '#',
         github: '#',
-        email: 'christopher@omy-tech.com'
+        email: 'christopher@omytech.com'
       }
     },
     {
@@ -53,7 +53,7 @@ const About = () => {
         linkedin: '#',
         twitter: '#',
         github: '#',
-        email: 'japhet@omy-tech.com'
+        email: 'japhet@omytech.com'
       }
     }
   ];
@@ -102,7 +102,7 @@ const About = () => {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-5xl lg:text-6xl font-bold text-white mb-6">
-                About <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">OMY-TECH</span>
+                About <span className="bg-gradient-to-r from-cyan-400 to-purple-500 bg-clip-text text-transparent">OMYTECH</span>
               </h1>
               <p className="text-xl text-gray-300 leading-relaxed mb-8">
                 We're a passionate team of digital craftsmen dedicated to forging exceptional digital experiences 

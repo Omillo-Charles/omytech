@@ -31,7 +31,6 @@ const Footer = () => {
       { name: 'Our Team', href: '/about' },
       { name: 'Portfolio', href: '/portfolio' },
       { name: 'Pricing', href: '/pricing' },
-      { name: 'Blog', href: '/blog' },
       { name: 'Contact', href: '/contact' }
     ],
     resources: [
@@ -43,10 +42,10 @@ const Footer = () => {
       { name: 'FAQ', href: '#' }
     ],
     legal: [
-      { name: 'Privacy Policy', href: '#' },
-      { name: 'Terms of Service', href: '#' },
-      { name: 'Cookie Policy', href: '#' },
-      { name: 'GDPR Compliance', href: '#' }
+      { name: 'Privacy Policy', href: '/privacy-policy' },
+      { name: 'Terms of Service', href: '/terms-of-service' },
+      { name: 'Cookie Policy', href: '/cookie-policy' },
+      { name: 'GDPR Compliance', href: '/gdpr-compliance' }
     ]
   };
 
@@ -70,18 +69,17 @@ const Footer = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         {/* Main Footer Content */}
-        <div className="grid lg:grid-cols-5 gap-8 mb-12">
-          {/* Company Info */}
-          <div className="lg:col-span-2">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mb-12 items-start">
+          {/* Company Info (left) */}
+          <div className="lg:col-span-1">
             <Link to="/" className="flex items-center space-x-2 mb-6">
               <Logo size="sm" />
-              <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">OMY-TECH</span>
+              <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">OMYTECH</span>
             </Link>
             <p className="text-gray-300 mb-6 leading-relaxed">
               We forge exceptional digital experiences that drive growth and success. 
               From stunning websites to powerful mobile apps, we transform your vision into reality.
             </p>
-            
             {/* Contact Info */}
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
@@ -99,55 +97,41 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Services */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-cyan-400">Services</h3>
-            <ul className="space-y-2">
-              {footerLinks.services.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.href}
-                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Services & Company (right) */}
+          <div className="lg:col-span-2 flex flex-col lg:flex-row justify-end gap-10 lg:gap-20">
+            {/* Services */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-cyan-400">Services</h3>
+              <ul className="space-y-2">
+                {footerLinks.services.map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      to={link.href}
+                      className="text-gray-300 hover:text-cyan-400 transition-colors duration-200"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Company */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-cyan-400">Company</h3>
-            <ul className="space-y-2">
-              {footerLinks.company.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.href}
-                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Resources */}
-          <div>
-            <h3 className="text-lg font-semibold mb-4 text-cyan-400">Resources</h3>
-            <ul className="space-y-2">
-              {footerLinks.resources.map((link, index) => (
-                <li key={index}>
-                  <Link
-                    to={link.href}
-                    className="text-gray-300 hover:text-cyan-400 transition-colors duration-200"
-                  >
-                    {link.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            {/* Company */}
+            <div>
+              <h3 className="text-lg font-semibold mb-4 text-cyan-400">Company</h3>
+              <ul className="space-y-2">
+                {footerLinks.company.map((link, index) => (
+                  <li key={index}>
+                    <Link
+                      to={link.href}
+                      className="text-gray-300 hover:text-cyan-400 transition-colors duration-200"
+                    >
+                      {link.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         </div>
 
@@ -213,7 +197,7 @@ const Footer = () => {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-2 mb-4 md:mb-0">
               <span className="text-gray-400">
-                © {currentYear.getFullYear()} OMY-TECH. 
+                © {currentYear.getFullYear()} OMYTECH. 
               </span>
               <span className="text-gray-400">All Rights Reserved.</span>
             </div>

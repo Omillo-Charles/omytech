@@ -8,13 +8,16 @@ import Portfolio from './pages/Portfolio';
 import About from './pages/About';
 import Pricing from './pages/Pricing';
 import Contact from './pages/Contact';
-import Blog from './pages/Blog';
 import ServiceWebDevelopment from './pages/ServiceWebDevelopment';
 import ServiceMobileAppDevelopment from './pages/ServiceMobileAppDevelopment';
 import ServiceUIDesign from './pages/ServiceUIDesign';
 import ServiceDigitalMarketing from './pages/ServiceDigitalMarketing';
 import ServiceEcommerce from './pages/ServiceEcommerce';
 import ServiceConsulting from './pages/ServiceConsulting';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsOfService from './pages/TermsOfService';
+import CookiePolicy from './pages/CookiePolicy';
+import GDPRCompliance from './pages/GDPRCompliance';
 
 // Component to handle scroll to top on route change
 const ScrollToTop = () => {
@@ -48,7 +51,10 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/pricing" element={<Pricing />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="/blog" element={<Blog />} />
+            <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+            <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="/cookie-policy" element={<CookiePolicy />} />
+            <Route path="/gdpr-compliance" element={<GDPRCompliance />} />
           </Routes>
         </main>
         <Footer />
