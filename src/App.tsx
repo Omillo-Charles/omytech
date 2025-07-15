@@ -23,6 +23,7 @@ import Auth from './pages/Auth';
 import AdminDashboard from './pages/dashboard/admin';
 import CreateProject from './pages/create-project';
 import AuthCallback from './pages/AuthCallback';
+import RegisterProject from './pages/register-project';
 
 // Component to handle scroll to top on route change
 const ScrollToTop = () => {
@@ -64,6 +65,7 @@ function App() {
             <Route path="/gdpr-compliance" element={<GDPRCompliance />} />
             <Route path="/dashboard/admin" element={<AdminDashboard />} />
             <Route path="/create-project" element={<CreateProject />} />
+            <Route path="/register-project" element={<RegisterProject />} />
           </Routes>
         </main>
         <Footer />

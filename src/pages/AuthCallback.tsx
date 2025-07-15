@@ -26,7 +26,7 @@ const AuthCallback = () => {
             sessionStorage.removeItem('firstSignup');
             navigate('/create-project', { replace: true });
           } else {
-            navigate('/dashboard/client', { replace: true });
+            navigate('/create-project', { replace: true });
           }
         }
       } catch (err) {

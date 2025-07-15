@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { account } from '../utils/appwrite';
+import { account, ID } from '../utils/appwrite';
 import type { OAuthProvider } from 'appwrite';
 
 const ADMIN_EMAILS = [
@@ -13,6 +13,7 @@ const ADMIN_EMAILS = [
 const Auth = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [name, setName] = useState('');
   const [isSignup, setIsSignup] = useState(false);
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
@@ -25,8 +26,10 @@ const Auth = () => {
     setLoading(true);
     try {
       if (isSignup) {
-        // Sign up with Appwrite
-        await account.create('unique()', email, password);
+        // Sign up with Appwrite using ID.unique() and name
+        const userId = ID.unique();
+        console.log('userId:', userId);
+        await account.create(userId, email, password, name);
         // After signup, log in the user
         await account.createSession(email, password);
         sessionStorage.setItem('firstSignup', 'true');
@@ -38,8 +41,7 @@ const Auth = () => {
         if (isAdmin) {
           navigate('/dashboard/admin');
         } else {
-          const from = (location.state && (location.state as any).from) || '/dashboard/client';
-          navigate(from);
+          navigate('/create-project');
         }
       }
       setLoading(false);
@@ -70,6 +72,17 @@ const Auth = () => {
           {isSignup ? 'Sign Up' : 'Sign In'}
         </h1>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {isSignup && (
+            <input
+              className="w-full p-3 rounded bg-black/40 border border-cyan-500/30 text-white"
+              placeholder="Name"
+              type="text"
+              value={name}
+              onChange={e => setName(e.target.value)}
+              required
+              disabled={loading}
+            />
+          )}
           <input
             className="w-full p-3 rounded bg-black/40 border border-cyan-500/30 text-white"
             placeholder="Email"
