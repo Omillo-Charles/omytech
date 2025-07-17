@@ -52,7 +52,7 @@ const Footer = () => {
   const socialLinks = [
     { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61578570897248&mibextid=rS40aB7S9Ucbxw6v', name: 'Facebook' },
     { icon: 'x-twitter', href: 'https://x.com/omytech_kenya', name: 'X' },
-    { icon: Linkedin, href: '#', name: 'LinkedIn' },
+    { icon: Linkedin, href: 'https://www.linkedin.com/in/omytech-kenya/', name: 'LinkedIn' },
     { icon: Instagram, href: 'https://instagram.com/omytech_kenya', name: 'Instagram' }
   ];
 

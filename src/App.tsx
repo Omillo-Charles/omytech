@@ -23,6 +23,9 @@ import Auth from './pages/Auth';
 import AuthCallback from './pages/AuthCallback';
 import AdminDashboard from './pages/dashboard/admin';
 import CreateProject from './pages/create-project';
+import ClientCreateProject from './pages/client/CreateProject';
+import ClientDashboard from './pages/client/Dashboard';
+import AdminDashboardPage from './pages/dashboard/AdminDashboardPage';
 // Only import the new simple pages
 
 // Component to handle scroll to top on route change
@@ -53,7 +56,10 @@ function App() {
           <Route path="/auth" element={<Auth />} />
           <Route path="/auth/callback" element={<AuthCallback />} />
           <Route path="/dashboard/admin" element={<AdminDashboard />} />
+          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
           <Route path="/create-project" element={<CreateProject />} />
+          <Route path="/client/create-project" element={<ClientCreateProject />} />
+          <Route path="/client/dashboard" element={<ClientDashboard />} />
           <Route path="/" element={<Home />} />
           <Route path="/services" element={<Services />} />
           <Route path="/services/web-development" element={<ServiceWebDevelopment />} />

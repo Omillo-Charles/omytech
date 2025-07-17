@@ -1,10 +1,11 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Users } from 'lucide-react';
 
 const CreateProject = () => {
   const location = useLocation();
   const name = location.state?.name || 'Client';
+  const navigate = useNavigate();
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-cyan-950 via-black to-purple-950 pt-20 px-4">
@@ -15,8 +16,22 @@ const CreateProject = () => {
         <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent mb-4">
           Welcome, {name}!
         </h1>
-        <p className="text-lg text-cyan-100 mb-2">You&apos;re signed in as a valued client.</p>
+        <p className="text-lg text-cyan-100 mb-2">Hi {name}, you&apos;re signed in as a valued client.</p>
         <p className="text-base text-gray-300 mb-2">Ready to start your next project with <span className="text-cyan-400 font-semibold">OMYTECH</span>?</p>
+        <div className="mt-8 flex flex-col gap-4 items-center w-full">
+          <button
+            className="w-full max-w-xs bg-cyan-500 hover:bg-cyan-600 text-white py-3 rounded font-semibold transition"
+            onClick={() => navigate('/client/create-project')}
+          >
+            Create Project
+          </button>
+          <button
+            className="w-full max-w-xs bg-gray-800 hover:bg-gray-900 text-white py-3 rounded font-semibold transition"
+            onClick={() => navigate('/client/dashboard')}
+          >
+            View Dashboard
+          </button>
+        </div>
       </div>
     </div>
   );
