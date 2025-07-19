@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { createProject } from '../../utils/appwriteService';
+import { account, storage, databases, ID } from '../../utils/appwrite';
+import { Permission } from 'appwrite';
+import { PROJECTS_COLLECTION_ID, DATABASE_ID, BUCKET_ID, ADMINS } from '../../utils/appwriteService';
 
 const PRESET_COLORS = [
   '#2563eb', // blue-600
@@ -16,7 +18,7 @@ const PRESET_COLORS = [
   '#000',    // black
 ];
 
-const CreateProjectPage = () => {
+export default function CreateProjectPage() {
   const [form, setForm] = useState({
     name: '',
     phone: '',
@@ -59,11 +61,59 @@ const CreateProjectPage = () => {
     setError('');
     setSuccess('');
     try {
-      await createProject(form);
-      setSuccess('Project created successfully! Redirecting to dashboard...');
+      // 1. Get current user
+      const user = await account.get();
+      const userId = user.$id;
+      // 2. Upload files (if any)
+      let fileIds: string[] = [];
+      if (form.files.length > 0) {
+        const uploadPromises = form.files.map(async (file) => {
+          const uploaded = await storage.createFile(
+            BUCKET_ID,
+            ID.unique(),
+            file,
+            [
+              Permission.read(`user:${userId}`),
+              Permission.write(`user:${userId}`),
+            ]
+          );
+          return uploaded.$id;
+        });
+        fileIds = await Promise.all(uploadPromises);
+      }
+      // 3. Pick a random admin
+      const randomAdmin = ADMINS[Math.floor(Math.random() * ADMINS.length)];
+      // 4. Create project document
+      await databases.createDocument(
+        DATABASE_ID,
+        PROJECTS_COLLECTION_ID,
+        ID.unique(),
+        {
+          name: form.name,
+          phone: form.phone,
+          description: form.description,
+          budget: form.budget ? Number(form.budget) : undefined,
+          deadline: form.deadline,
+          colors: form.colors,
+          files: fileIds,
+          clientId: userId,
+          status: 'Not Started',
+          adminId: randomAdmin.id,
+          adminName: randomAdmin.name,
+          adminEmail: randomAdmin.email,
+        },
+        [
+          Permission.read(`user:${userId}`),
+          Permission.write(`user:${userId}`),
+        ]
+      );
+      setSuccess(`Project created successfully! Assigned admin: ${randomAdmin.name} (${randomAdmin.email})`);
+      setForm({
+        name: '', phone: '', description: '', budget: '', deadline: '', colors: [], files: []
+      });
       setTimeout(() => navigate('/client/dashboard'), 1800);
     } catch (err: any) {
-      setError(err?.message || 'Failed to create project.');
+      setError(err?.message || err?.response?.message || 'Failed to create project.');
     } finally {
       setLoading(false);
     }
@@ -100,7 +150,6 @@ const CreateProjectPage = () => {
               name="phone"
               value={form.phone}
               onChange={handleChange}
-              required
               pattern="[0-9\-\+\s\(\)]{7,}"
               className="w-full px-3 py-2 border border-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-cyan-500 bg-gray-800 text-white placeholder-gray-400"
               placeholder="Enter your phone number"
@@ -267,6 +316,4 @@ const CreateProjectPage = () => {
       </div>
     </div>
   );
-};
-
-export default CreateProjectPage; 
+} 
