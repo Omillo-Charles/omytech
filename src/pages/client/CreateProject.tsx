@@ -81,9 +81,7 @@ export default function CreateProjectPage() {
         });
         fileIds = await Promise.all(uploadPromises);
       }
-      // 3. Pick a random admin
-      const randomAdmin = ADMINS[Math.floor(Math.random() * ADMINS.length)];
-      // 4. Create project document
+      // 3. Create project document (no admin assignment)
       await databases.createDocument(
         DATABASE_ID,
         PROJECTS_COLLECTION_ID,
@@ -98,18 +96,13 @@ export default function CreateProjectPage() {
           files: fileIds,
           clientId: userId,
           status: 'Not Started',
-          adminId: randomAdmin.id,
-          adminName: randomAdmin.name,
-          adminEmail: randomAdmin.email,
         },
         [
           Permission.read(`user:${userId}`),
           Permission.write(`user:${userId}`),
-          Permission.read(`user:${randomAdmin.id}`),
-          Permission.write(`user:${randomAdmin.id}`),
         ]
       );
-      setSuccess(`Project created successfully! Assigned admin: ${randomAdmin.name} (${randomAdmin.email})`);
+      setSuccess('Project created successfully!');
       setForm({
         name: '', phone: '', description: '', budget: '', deadline: '', colors: [], files: []
       });

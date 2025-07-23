@@ -4,9 +4,6 @@ import { account } from '../utils/appwrite';
 import type { OAuthProvider } from 'appwrite';
 
 const ADMIN_EMAILS = [
-  'fidelomillo812@gmail.com',
-  'fidelomillo1@gmail.com',
-  'omytechteam@gmail.com',
   'omytechkenya@gmail.com',
 ];
 

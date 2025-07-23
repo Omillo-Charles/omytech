@@ -3,9 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { account } from '../utils/appwrite';
 
 const ADMIN_EMAILS = [
-  'fidelomillo812@gmail.com',
-  'fidelomillo1@gmail.com',
-  'omytechteam@gmail.com',
   'omytechkenya@gmail.com',
 ];
 

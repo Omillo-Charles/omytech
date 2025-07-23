@@ -162,119 +162,116 @@ export default function ClientDashboard() {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredProjects.map((project) => (
-              <div key={project.$id} className="bg-gray-900 rounded-2xl p-6 shadow-lg border border-gray-800 flex flex-col gap-6">
-                <div>
-                  <div className="flex items-center gap-2 mb-2">
-                    <span className="text-lg font-bold text-white">{project.name || 'Untitled Project'}</span>
-                    {project.status && (
-                      <span
-                        className={`ml-2 px-2 py-0.5 rounded-full text-xs font-semibold
-                          ${project.status === 'Completed' ? 'bg-green-900 text-green-400' :
-                            project.status === 'In Progress' ? 'bg-blue-900 text-blue-400' :
-                            project.status === 'Not Started' ? 'bg-gray-800 text-gray-300' :
-                            'bg-orange-900 text-orange-400'}
-                        `}
-                      >
-                        {project.status}
-                      </span>
+              <div
+                key={project.$id}
+                className="relative bg-gradient-to-br from-gray-900/80 via-gray-800/80 to-cyan-950/80 rounded-3xl p-7 shadow-2xl border border-cyan-900/30 flex flex-col gap-6 backdrop-blur-lg overflow-hidden group transition-transform hover:scale-105 hover:shadow-cyan-500/20"
+                style={{ minHeight: '340px' }}
+              >
+                {/* Status Bar */}
+                <div
+                  className={`absolute top-0 left-0 w-full h-2 rounded-t-3xl transition-all duration-300 ${
+                    project.status === 'Completed'
+                      ? 'bg-gradient-to-r from-green-400 to-green-600'
+                      : project.status === 'In Progress'
+                      ? 'bg-gradient-to-r from-blue-400 to-blue-600'
+                      : project.status === 'Not Started'
+                      ? 'bg-gradient-to-r from-gray-400 to-gray-600'
+                      : 'bg-gradient-to-r from-orange-400 to-orange-600'
+                  }`}
+                ></div>
+                {/* Project Name & Status */}
+                <div className="flex items-center gap-3 mb-2">
+                  <span className="text-2xl font-extrabold text-white tracking-tight flex-1 truncate">
+                    {project.name || 'Untitled Project'}
+                  </span>
+                  {project.status && (
+                    <span
+                      className={`px-3 py-1 rounded-full text-xs font-bold shadow transition-all
+                        ${project.status === 'Completed' ? 'bg-green-900/80 text-green-300 border border-green-500/30' :
+                          project.status === 'In Progress' ? 'bg-blue-900/80 text-blue-300 border border-blue-500/30' :
+                          project.status === 'Not Started' ? 'bg-gray-800/80 text-gray-200 border border-gray-500/30' :
+                          'bg-orange-900/80 text-orange-300 border border-orange-500/30'}
+                      `}
+                    >
+                      {project.status}
+                    </span>
+                  )}
+                </div>
+                {/* Description */}
+                {project.description && (
+                  <div className="text-gray-200 mb-2 text-base italic line-clamp-3">{project.description}</div>
+                )}
+                {/* Info Section */}
+                <div className="flex flex-col gap-2 mb-2">
+                  {project.$createdAt && (
+                    <div className="flex items-center gap-2 text-xs text-cyan-300">
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3" /></svg>
+                      <span>Created: {formatDate(project.$createdAt)}</span>
+                    </div>
+                  )}
+                  <div className="grid grid-cols-2 gap-3 text-sm">
+                    {project.phone && (
+                      <div className="flex items-center gap-2 text-cyan-300">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm12-12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                        <span>{project.phone}</span>
+                      </div>
+                    )}
+                    {project.budget !== undefined && project.budget !== null && project.budget !== '' && (
+                      <div className="flex items-center gap-2 text-green-300">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 8v8" /></svg>
+                        <span>${project.budget}</span>
+                      </div>
+                    )}
+                    {project.deadline && (
+                      <div className="flex items-center gap-2 text-blue-300">
+                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
+                        <span>{formatDate(project.deadline)}</span>
+                      </div>
                     )}
                     {project.colors && Array.isArray(project.colors) && project.colors.length > 0 && (
-                      <div className="flex gap-1 ml-2">
+                      <div className="flex items-center gap-1">
+                        <svg className="w-4 h-4 text-purple-300" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10" /><path strokeLinecap="round" strokeLinejoin="round" d="M12 6v6l4 2" /></svg>
                         {project.colors.map((color: string, idx: number) => (
                           <span key={idx} className="w-4 h-4 rounded-full border border-gray-700" style={{ backgroundColor: color }} title={color}></span>
                         ))}
                       </div>
                     )}
                   </div>
-                  {/* Project Created Date */}
-                  {project.$createdAt && (
-                    <div className="flex items-center gap-1 text-xs text-gray-400 mb-2">
-                      <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3" /></svg>
-                      <span>Created: {formatDate(project.$createdAt)}</span>
-                    </div>
-                  )}
-                  {project.description && (
-                    <div className="text-gray-300 mb-2 text-sm italic">{project.description}</div>
-                  )}
-                  <div className="flex flex-wrap gap-4 items-center text-sm mb-2">
-                    {project.phone && (
-                      <div className="flex items-center gap-1 text-gray-400">
-                        <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M3 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H5a2 2 0 01-2-2v-2zm12-12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zm0 12a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
-                        <span>{project.phone}</span>
-                      </div>
-                    )}
-                    {project.budget !== undefined && project.budget !== null && project.budget !== '' && (
-                      <div className="flex items-center gap-1 text-green-400 bg-green-900/30 px-2 py-1 rounded-full">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 1.343-3 3s1.343 3 3 3 3-1.343 3-3-1.343-3-3-3zm0 0V4m0 8v8" /></svg>
-                        <span>${project.budget}</span>
-                      </div>
-                    )}
-                    {project.deadline && (
-                      <div className="flex items-center gap-1 text-blue-400 bg-blue-900/30 px-2 py-1 rounded-full">
-                        <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" /></svg>
-                        <span>{formatDate(project.deadline)}</span>
-                      </div>
-                    )}
-                    {project.$createdAt && (
-                      <div className="flex items-center gap-1 text-gray-400 bg-gray-800/60 px-2 py-1 rounded-full mt-1">
-                        <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3" /></svg>
-                        <span>Created: {formatDate(project.$createdAt)}</span>
-                      </div>
-                    )}
-                  </div>
-                  {project.files && Array.isArray(project.files) && project.files.length > 0 && (
-                    <div className="mt-2">
-                      <span className="text-sm text-gray-400 font-semibold flex items-center gap-1">
-                        <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.586-6.586a2 2 0 10-2.828-2.828z" /></svg>
-                        Files:
-                      </span>
-                      <ul className="list-disc list-inside text-xs text-cyan-300 mt-1">
-                        {project.files.map((fileId: string, idx: number) => (
-                          <li key={fileId || idx}>
-                            <a
-                              href={`https://cloud.appwrite.io/v1/storage/buckets/${project.bucketId || ''}/files/${fileId}/view?project=${project.projectId || ''}`}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="underline hover:text-cyan-400"
-                            >
-                              Download File {idx + 1}
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  )}
                 </div>
-                <div className="border-t border-gray-800 pt-4 flex flex-col md:items-end">
-                  {/* Assigned Admin info */}
-                  {project.adminName && project.adminEmail ? (
-                    <div className="flex flex-col items-start md:items-end gap-2 mb-2">
-                      <div className="flex items-center gap-2">
-                        <div className="w-8 h-8 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center text-lg font-bold text-white shadow">
-                          {getInitials(project.adminName)}
-                        </div>
-                        <div className="text-sm text-gray-300">
-                          <span className="font-semibold text-cyan-400">Assigned Admin:</span> {project.adminName}
-                        </div>
-                      </div>
-                      <a href={`mailto:${project.adminEmail}`} className="text-xs text-blue-400 underline hover:text-blue-300 transition-colors">
-                        {project.adminEmail}
-                      </a>
-                    </div>
-                  ) : null}
-                  {/* Edit/Delete Actions */}
-                  <div className="flex gap-2 mt-2">
-                    <a
-                      href="https://wa.me/254745511354"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="px-3 py-1 text-xs rounded-full bg-blue-900/40 text-blue-300 font-semibold hover:bg-blue-800/60 transition-colors"
-                      title="Chat with Admin on WhatsApp"
-                    >
-                      Chat with Admin
-                    </a>
+                {/* Files */}
+                {project.files && Array.isArray(project.files) && project.files.length > 0 && (
+                  <div className="mt-2">
+                    <span className="text-sm text-cyan-200 font-semibold flex items-center gap-1">
+                      <svg className="w-4 h-4 text-cyan-400" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.586-6.586a2 2 0 10-2.828-2.828z" /></svg>
+                      Files:
+                    </span>
+                    <ul className="list-disc list-inside text-xs text-cyan-300 mt-1">
+                      {project.files.map((fileId: string, idx: number) => (
+                        <li key={fileId || idx}>
+                          <a
+                            href={`https://cloud.appwrite.io/v1/storage/buckets/${project.bucketId || ''}/files/${fileId}/view?project=${project.projectId || ''}`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="underline hover:text-cyan-400"
+                          >
+                            Download File {idx + 1}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
+                )}
+                {/* Chat with Admin Button - full width */}
+                <a
+                  href="https://wa.me/254745511354"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 text-base rounded-full bg-gradient-to-r from-cyan-500 to-blue-600 text-white font-semibold hover:opacity-90 transition-colors mt-4 shadow-lg shadow-cyan-500/10"
+                  title="Chat with Admin on WhatsApp"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" /></svg>
+                  Chat with Admin
+                </a>
               </div>
             ))}
           </div>

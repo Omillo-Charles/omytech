@@ -10,18 +10,12 @@ export const NOTIFICATIONS_COLLECTION_ID = '687b6ec300367ae00486';
 
 // List of allowed admin emails
 const ADMIN_EMAILS = [
-  'fidelomillo812@gmail.com',
-  'fidelomillo1@gmail.com',
-  'omytechteam@gmail.com',
   'omytechkenya@gmail.com',
 ];
 
 // Use email as id and name for now
 export const ADMINS = [
-  { id: '687621604388496ea7a9', name: 'fidelomillo812@gmail.com', email: 'fidelomillo812@gmail.com' },
-  { id: '687a29d322770b3cbbcc', name: 'omytechteam@gmail.com', email: 'omytechteam@gmail.com' },
-  { id: '687a3078d985f6e4b00c', name: 'fidelomillo1@gmail.com', email: 'fidelomillo1@gmail.com' },
-  { id: '687a316f29b145ca24d6', name: 'omytechkenya@gmail.com', email: 'omytechkenya@gmail.com' },
+  { id: '68809f307ab7b1c5faa6', name: 'omytechkenya@gmail.com', email: 'omytechkenya@gmail.com' },
 ];
 
 export async function fetchUserProjects() {
@@ -67,7 +61,7 @@ export async function createProject(form: {
     fileIds.push(uploaded.$id);
   }
 
-  // 4. Create project document with permissions and admin info
+  // 4. Create project document with permissions (no admin info)
   console.log('Creating project document with permissions:', userPermissions);
   const project = await databases.createDocument(
     DATABASE_ID,
@@ -82,28 +76,18 @@ export async function createProject(form: {
       colors: form.colors,
       files: fileIds,
       clientId: user.$id,
-      adminId: randomAdmin.id,
-      adminName: randomAdmin.name,
-      adminEmail: randomAdmin.email,
       status: 'Not Started', // Add default status
     },
     userPermissions
   );
 
-  // 5. Create notifications for both client and admin
+  // 5. Create notification for client only
   const message = `Project "${form.name}" created successfully on ${new Date().toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' })}.`;
-  await Promise.all([
-    sendNotification({
-      userId: userId,
-      message,
-      projectId: project.$id,
-    }),
-    sendNotification({
-      userId: randomAdmin.id,
-      message: `A new project "${form.name}" was assigned to you on ${new Date().toLocaleDateString('en-US', { day: '2-digit', month: 'short', year: 'numeric' })}.`,
-      projectId: project.$id,
-    })
-  ]);
+  await sendNotification({
+    userId: userId,
+    message,
+    projectId: project.$id,
+  });
   return project;
 }
 
