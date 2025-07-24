@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { account } from '../../utils/appwrite';
-import { fetchUserProjects, deleteProject, updateProject, fetchUserNotifications } from '../../utils/appwriteService';
+import { fetchUserProjects, deleteProject, updateProject, fetchUserNotifications, deleteNotification } from '../../utils/appwriteService';
 
 function formatDate(dateStr?: string) {
   if (!dateStr) return '';
@@ -75,6 +75,19 @@ export default function ClientDashboard() {
       });
   }, []);
 
+  // Add clear notifications handler
+  const handleClearNotifications = async () => {
+    if (!notifications.length) return;
+    for (const n of notifications) {
+      try {
+        await deleteNotification(n.$id);
+      } catch (e) {
+        // Optionally handle error
+      }
+    }
+    setNotifications([]);
+  };
+
   // Stats
   const totalProjects = projects.length;
   const activeProjects = projects.filter((p) => p.status === 'In Progress').length;
@@ -89,6 +102,14 @@ export default function ClientDashboard() {
             <h2 className="text-xl font-semibold text-cyan-400">Notifications</h2>
             <span className="text-xs text-gray-400">{notifications.length} new</span>
           </div>
+          {notifications.length > 0 && !notificationsLoading && (
+            <button
+              onClick={handleClearNotifications}
+              className="mb-4 px-4 py-2 bg-gradient-to-r from-red-500 to-red-700 text-white rounded-full font-semibold shadow hover:opacity-90 transition-all"
+            >
+              Clear Notifications
+            </button>
+          )}
           {notificationsLoading ? (
             <div className="text-gray-500 text-center">Loading notifications...</div>
           ) : notificationsError ? (

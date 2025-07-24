@@ -78,6 +78,8 @@ export async function createProject(form: {
       colors: form.colors,
       files: fileIds,
       clientId: user.$id,
+      clientName: user.name || '',
+      clientEmail: user.email || '',
       status: 'Not Started', // Add default status
     },
     userPermissions
@@ -231,4 +233,12 @@ export async function fetchAllProjects() {
     PROJECTS_COLLECTION_ID
   );
   return response.documents;
+}
+
+export async function deleteNotification(notificationId: string) {
+  return databases.deleteDocument(
+    DATABASE_ID,
+    NOTIFICATIONS_COLLECTION_ID,
+    notificationId
+  );
 } 
