@@ -7,7 +7,7 @@ const Pricing = () => {
     {
       name: 'Starter',
       icon: Star,
-      price: 299,
+      price: 9999,
       period: 'project',
       description: 'Perfect for small businesses and startups looking to establish their digital presence.',
       features: [
@@ -27,7 +27,7 @@ const Pricing = () => {
     {
       name: 'Professional',
       icon: Zap,
-      price: 599,
+      price: 24999,
       period: 'project',
       description: 'Ideal for growing businesses that need advanced features and functionality.',
       features: [
@@ -49,7 +49,7 @@ const Pricing = () => {
     {
       name: 'Enterprise',
       icon: Crown,
-      price: 1299,
+      price: 39999,
       period: 'project',
       description: 'Comprehensive solution for large organizations with complex requirements.',
       features: [
@@ -73,12 +73,12 @@ const Pricing = () => {
   ];
 
   const addOns = [
-    { name: 'Mobile App Development', price: 499, description: 'Native iOS and Android apps' },
-    { name: 'Advanced Analytics Setup', price: 99, description: 'Custom tracking and reporting' },
-    { name: 'SEO Optimization Package', price: 149, description: 'Comprehensive SEO strategy' },
-    { name: 'Maintenance Package', price: 99, description: 'Monthly updates and support' },
-    { name: 'Content Creation', price: 99, description: 'Per page content writing' },
-    { name: 'Logo & Brand Design', price: 199, description: 'Complete brand identity' }
+    { name: 'Mobile App Development', price: 24999, description: 'Native iOS and Android apps' },
+    { name: 'Advanced Analytics Setup', price: 4999, description: 'Custom tracking and reporting' },
+    { name: 'SEO Optimization Package', price: 4999, description: 'Comprehensive SEO strategy' },
+    { name: 'Maintenance Package', price: 1499, description: 'Monthly updates and support' },
+    { name: 'Content Creation', price: 2499, description: 'Per page content writing' },
+    { name: 'Logo & Brand Design', price: 4999, description: 'Complete brand identity' }
   ];
 
   const [selectedAddOns, setSelectedAddOns] = useState<number[]>([]);
@@ -140,8 +140,11 @@ const Pricing = () => {
                     {/* Pricing */}
                     <div className="text-center mb-8">
                       <div className="flex items-center justify-center">
-                        <span className="text-3xl font-bold text-gray-900">$</span>
+                        <span className="text-3xl font-bold text-gray-900">KSh</span>
                         <span className="text-5xl font-bold text-gray-900">{plan.price.toLocaleString()}</span>
+                      </div>
+                      <div className="block text-xs text-gray-500 font-semibold border-b border-dashed border-gray-300 w-fit mx-auto mt-1 pb-0.5">
+                        (~${Math.round(plan.price / 133)})
                       </div>
                       <div className="text-gray-600 mt-2">per {plan.period}</div>
                     </div>
@@ -192,9 +195,12 @@ const Pricing = () => {
               <div key={index} className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-lg font-bold text-gray-900">{addon.name}</h3>
-                  <div className="text-2xl font-bold text-blue-600">${addon.price}</div>
+                  <div className="text-2xl font-bold text-blue-600">KSh {addon.price.toLocaleString()}</div>
                 </div>
                 <p className="text-gray-600 mb-4">{addon.description}</p>
+                <div className="block text-xs text-gray-500 font-semibold border-b border-dashed border-gray-300 w-fit mx-auto mt-1 pb-0.5">
+                  (~${Math.round(addon.price / 133)})
+                </div>
                 {/* Removed Add to Project button, price is now shown above */}
               </div>
             ))}

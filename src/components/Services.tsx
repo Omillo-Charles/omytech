@@ -47,6 +47,16 @@ const Services = () => {
     }
   ];
 
+  // Add a mapping from service title to real pricing (lowest tier)
+  const servicePricing: Record<string, { ksh: string; usd: string }> = {
+    'Web Development': { ksh: 'KSh 9,999', usd: '~$75' },
+    'Mobile App Development': { ksh: 'KSh 24,999', usd: '~$188' },
+    'UI/UX Design': { ksh: 'KSh 4,999', usd: '~$38' },
+    'Digital Marketing': { ksh: 'KSh 4,999', usd: '~$38' },
+    'E-commerce Solutions': { ksh: 'KSh 12,999', usd: '~$98' },
+    'Consulting & Strategy': { ksh: 'KSh 1,499/mo', usd: '~$11/mo' },
+  };
+
   return (
     <section id="services" className="py-20 bg-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -84,6 +94,13 @@ const Services = () => {
                 <p className="text-gray-600 mb-6 leading-relaxed">
                   {service.description}
                 </p>
+
+                {/* Pricing */}
+                <div className="mb-4">
+                  <span className="inline-block bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold px-4 py-1 rounded-full">
+                    {servicePricing[service.title]?.ksh} <span className="text-gray-200 font-normal ml-1">({servicePricing[service.title]?.usd})</span>
+                  </span>
+                </div>
 
                 {/* Features */}
                 <div className="space-y-2">
