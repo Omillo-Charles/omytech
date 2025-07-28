@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { account, databases } from '../../utils/appwrite';
 import { DATABASE_ID, PROJECTS_COLLECTION_ID, deleteProject, updateProject, fetchUserNotifications, fetchAllProjects } from '../../utils/appwriteService';
+import { Switch } from '@headlessui/react';
 
 function formatDate(dateStr?: string) {
   if (!dateStr) return '';
@@ -340,6 +341,23 @@ export default function AdminDashboardPage() {
                         {status}
                       </button>
                     ))}
+                  </div>
+                  {/* Payment Toggle */}
+                  <div className="flex items-center gap-4 mt-4">
+                    <Switch
+                      checked={!!project.paymentEnabled}
+                      onChange={async (checked: boolean) => {
+                        await updateProject(project.$id, { paymentEnabled: checked });
+                        setProjects((prev) => prev.map((p) => p.$id === project.$id ? { ...p, paymentEnabled: checked } : p));
+                      }}
+                      className={`${project.paymentEnabled ? 'bg-green-500' : 'bg-gray-700'} relative inline-flex h-6 w-11 items-center rounded-full transition-colors`}
+                    >
+                      <span className="sr-only">Enable Payment</span>
+                      <span
+                        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${project.paymentEnabled ? 'translate-x-6' : 'translate-x-1'}`}
+                      />
+                    </Switch>
+                    <span className={`text-sm font-semibold ${project.paymentEnabled ? 'text-green-400' : 'text-gray-400'}`}>{project.paymentEnabled ? 'Payment Enabled' : 'Payment Disabled'}</span>
                   </div>
                   {/* Full-width Delete Button */}
                   <button

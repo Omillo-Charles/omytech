@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@headlessui/react": "^2.2.6",
     "appwrite": "^18.1.1",
     "bootstrap-icons": "^1.13.1",
     "lucide-react": "^0.344.0",

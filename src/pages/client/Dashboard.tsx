@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { account } from '../../utils/appwrite';
 import { fetchUserProjects, deleteProject, updateProject, fetchUserNotifications, deleteNotification } from '../../utils/appwriteService';
+import { Pencil, Trash2 } from 'lucide-react';
 
 function formatDate(dateStr?: string) {
   if (!dateStr) return '';
@@ -30,6 +31,10 @@ export default function ClientDashboard() {
   const [notificationsLoading, setNotificationsLoading] = useState(true);
   const [notificationsError, setNotificationsError] = useState('');
   const [expandedDesc, setExpandedDesc] = useState<{ [id: string]: boolean }>({});
+  const [editProject, setEditProject] = useState<any>(null);
+  const [editForm, setEditForm] = useState<any>(null);
+  const [editLoading, setEditLoading] = useState(false);
+  const [deleteId, setDeleteId] = useState<string | null>(null);
 
 
   useEffect(() => {
@@ -47,6 +52,16 @@ export default function ClientDashboard() {
         setError('Failed to load projects.');
         setLoading(false);
       });
+  }, []);
+
+  // Automatic polling for project updates every 10 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      fetchUserProjects()
+        .then((docs) => setProjects(docs))
+        .catch(() => {});
+    }, 10000); // 10 seconds
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -92,6 +107,44 @@ export default function ClientDashboard() {
   const totalProjects = projects.length;
   const activeProjects = projects.filter((p) => p.status === 'In Progress').length;
   const completedProjects = projects.filter((p) => p.status === 'Completed').length;
+
+  // Edit handlers
+  const openEditModal = (project: any) => {
+    setEditProject(project);
+    setEditForm({ ...project });
+  };
+  const closeEditModal = () => {
+    setEditProject(null);
+    setEditForm(null);
+  };
+  const handleEditChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setEditForm({ ...editForm, [e.target.name]: e.target.value });
+  };
+  const handleEditSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setEditLoading(true);
+    try {
+      await updateProject(editProject.$id, editForm);
+      setProjects((prev) => prev.map((p) => p.$id === editProject.$id ? { ...p, ...editForm } : p));
+      closeEditModal();
+    } catch (err) {
+      alert('Failed to update project.');
+    } finally {
+      setEditLoading(false);
+    }
+  };
+  // Delete handler
+  const handleDelete = async (projectId: string) => {
+    setDeleteId(projectId);
+    try {
+      await deleteProject(projectId);
+      setProjects((prev) => prev.filter((p) => p.$id !== projectId));
+    } catch (err) {
+      alert('Failed to delete project.');
+    } finally {
+      setDeleteId(null);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-black pt-24 pb-8 px-2">
@@ -177,9 +230,15 @@ export default function ClientDashboard() {
         ) : error ? (
           <div className="text-center text-red-400 py-12 text-lg">{error}</div>
         ) : filteredProjects.length === 0 ? (
-          <div className="text-center text-gray-400 py-12 text-lg">
-            <img src="https://illustrations.popsy.co/gray/empty-state.svg" alt="No projects" className="mx-auto mb-4 w-40" />
-            You have not created any projects yet.
+          <div className="flex flex-col items-center justify-center py-20 text-center bg-gradient-to-br from-cyan-900/40 to-purple-900/30 rounded-2xl shadow-inner border border-cyan-800/20">
+            <div className="mb-6 flex items-center justify-center w-20 h-20 rounded-full bg-gradient-to-br from-cyan-500/60 to-purple-500/40 shadow-lg">
+              <span className="text-5xl">🚀</span>
+            </div>
+            <h3 className="text-2xl font-bold text-cyan-300 mb-2">No Projects Yet</h3>
+            <p className="text-gray-300 text-base max-w-md mx-auto mb-2">You haven&apos;t created any projects yet. Start your first project to see it here!</p>
+            <div className="mt-4">
+              <span className="inline-block bg-gradient-to-r from-cyan-500 to-purple-500 text-white px-6 py-2 rounded-full font-semibold shadow hover:opacity-90 transition-all">Start Building 🚀</span>
+            </div>
           </div>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -310,6 +369,15 @@ export default function ClientDashboard() {
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" /></svg>
                   Chat with Admin
                 </a>
+                {/* Make Payment Button */}
+                <button
+                  className={`w-full flex items-center justify-center gap-2 px-4 py-3 text-base rounded-full font-semibold transition-colors mt-2 shadow-lg shadow-cyan-500/10
+                    ${project.paymentEnabled ? 'bg-gradient-to-r from-green-500 to-blue-600 text-white hover:opacity-90' : 'bg-gray-700 text-gray-400 cursor-not-allowed'}`}
+                  disabled={!project.paymentEnabled}
+                  title={project.paymentEnabled ? 'Proceed to payment' : 'Waiting for admin approval'}
+                >
+                  💳 Make Payment
+                </button>
               </div>
             ))}
           </div>

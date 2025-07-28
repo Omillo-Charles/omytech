@@ -111,12 +111,6 @@ export async function fetchUserNotifications() {
 
 export async function deleteProject(projectId: string) {
   const user = await account.get();
-  const userId = user.$id;
-  // Appwrite-recommended permissions: only the current user can read/write
-  const userPermissions = [
-    Permission.read(`user:${userId}`),
-    Permission.write(`user:${userId}`),
-  ];
   // Fetch the project to get clientId, adminId, and name before deleting
   const project = await databases.getDocument(
     DATABASE_ID,
@@ -128,19 +122,29 @@ export async function deleteProject(projectId: string) {
     PROJECTS_COLLECTION_ID,
     projectId
   );
-  // Send notifications to client and admin
-  await Promise.all([
-    sendNotification({
-      userId: project.clientId,
-      message: `Your project "${project.name}" was deleted by the admin.`,
-      projectId: projectId,
-    }),
-    sendNotification({
-      userId: project.adminId,
-      message: `The project "${project.name}" assigned to you was deleted.`,
-      projectId: projectId,
-    })
-  ]);
+  // Send notifications to client and admin (only if IDs exist)
+  const notifications = [];
+  if (project.clientId) {
+    notifications.push(
+      sendNotification({
+        userId: project.clientId,
+        message: `Your project "${project.name}" was deleted.`,
+        projectId: projectId,
+      })
+    );
+  }
+  if (project.adminId) {
+    notifications.push(
+      sendNotification({
+        userId: project.adminId,
+        message: `The project "${project.name}" assigned to you was deleted.`,
+        projectId: projectId,
+      })
+    );
+  }
+  if (notifications.length > 0) {
+    await Promise.all(notifications);
+  }
   return deleted;
 }
 
@@ -175,6 +179,7 @@ export async function updateProject(projectId: string, data: Partial<{
   colors: string[];
   files: string[];
   status: string;
+  paymentEnabled: boolean;
 }>) {
   // Use the exported DATABASE_ID and PROJECTS_COLLECTION_ID
   const updated = await databases.updateDocument(
