@@ -22,7 +22,6 @@ function getInitials(name: string) {
 export default function AdminDashboardPage() {
   const [admin, setAdmin] = useState<any>(null);
   const [projects, setProjects] = useState<any[]>([]);
-  const [filteredProjects, setFilteredProjects] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [search, setSearch] = useState('');
@@ -34,6 +33,23 @@ export default function AdminDashboardPage() {
   const [notificationsError, setNotificationsError] = useState('');
   const navigate = useNavigate();
   const [showTermsModal, setShowTermsModal] = useState(false);
+  const [activeFilter, setActiveFilter] = useState('All');
+
+  const filterOptions = [
+    'All',
+    'Not Started',
+    'In Progress',
+    'Completed',
+    'Payment Enabled',
+    'Payment Disabled',
+  ];
+
+  const filteredProjects = projects.filter((p) => {
+    if (activeFilter === 'All') return true;
+    if (activeFilter === 'Payment Enabled') return !!p.paymentEnabled;
+    if (activeFilter === 'Payment Disabled') return !p.paymentEnabled;
+    return p.status === activeFilter;
+  });
 
   useEffect(() => {
     account.get().then(setAdmin).catch(() => setAdmin(null));
@@ -59,14 +75,14 @@ export default function AdminDashboardPage() {
 
   useEffect(() => {
     if (!search) {
-      setFilteredProjects(projects);
+      // setFilteredProjects(projects); // This line is no longer needed as filteredProjects is calculated directly
     } else {
-      setFilteredProjects(
-        projects.filter((p) =>
-          (p.name || '').toLowerCase().includes(search.toLowerCase()) ||
-          (p.status || '').toLowerCase().includes(search.toLowerCase())
-        )
-      );
+      // setFilteredProjects(
+      //   projects.filter((p) =>
+      //     (p.name || '').toLowerCase().includes(search.toLowerCase()) ||
+      //     (p.status || '').toLowerCase().includes(search.toLowerCase())
+      //   )
+      // );
     }
   }, [search, projects]);
 
@@ -212,6 +228,21 @@ export default function AdminDashboardPage() {
             placeholder="Search by name or status..."
             className="w-full md:w-1/2 px-4 py-2 rounded-lg border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
+        </div>
+        {/* Filter Nav */}
+        <div className="hidden md:flex flex-wrap gap-2 mb-8 overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-blue-500 scrollbar-track-blue-100">
+          {filterOptions.map(option => (
+            <button
+              key={option}
+              className={`px-5 py-2 rounded-full font-semibold transition-all duration-200
+                ${activeFilter === option
+                  ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'}`}
+              onClick={() => setActiveFilter(option)}
+            >
+              {option}
+            </button>
+          ))}
         </div>
         {/* Project Cards */}
         {loading ? (
