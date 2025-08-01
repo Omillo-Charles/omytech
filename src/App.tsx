@@ -18,7 +18,6 @@ import PrivacyPolicy from './pages/PrivacyPolicy';
 import TermsOfService from './pages/TermsOfService';
 import CookiePolicy from './pages/CookiePolicy';
 import GDPRCompliance from './pages/GDPRCompliance';
-import OMYBOT from './components/OMYBOT';
 import Auth from './pages/Auth';
 import AuthCallback from './pages/AuthCallback';
 import AdminDashboardPage from './pages/dashboard/AdminDashboardPage';
@@ -82,7 +81,6 @@ function App() {
         </Routes>
       </main>
       <Footer />
-      <OMYBOT />
     </div>
   );
 }
