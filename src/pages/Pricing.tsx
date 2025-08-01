@@ -208,8 +208,139 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* Payment Details Section */}
       <section className="py-20 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold text-gray-900 mb-6">Payment Methods</h2>
+            <p className="text-xl text-gray-600">
+              Secure and convenient payment options for your convenience.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* M-Pesa Payment */}
+            <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200">
+              <div className="text-center mb-6">
+                <div className="w-24 h-16 bg-green-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  {/* M-Pesa Logo */}
+                  <svg className="w-16 h-10" viewBox="0 0 160 40" fill="none">
+                    {/* M-Pesa background */}
+                    <rect x="2" y="2" width="156" height="36" rx="4" fill="#00A651"/>
+                    {/* M-Pesa text */}
+                    <text x="80" y="24" textAnchor="middle" className="text-sm font-bold fill-white" style={{fontFamily: 'Arial, sans-serif'}}>M-PESA</text>
+                    {/* M-Pesa icon elements */}
+                    <circle cx="15" cy="20" r="4" fill="white" opacity="0.9"/>
+                    <circle cx="145" cy="20" r="4" fill="white" opacity="0.9"/>
+                    <rect x="12" y="16" width="6" height="8" rx="1" fill="white" opacity="0.8"/>
+                    <rect x="142" y="16" width="6" height="8" rx="1" fill="white" opacity="0.8"/>
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">M-Pesa</h3>
+                <p className="text-gray-600">Fast and secure mobile money payment</p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="bg-green-50 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-gray-900">Phone Number:</span>
+                    <span className="text-green-600 font-bold">0745511354</span>
+                  </div>
+                </div>
+                
+                <div className="text-sm text-gray-600 space-y-2">
+                  <p>• Send money to the number above</p>
+                  <p>• Include your project reference</p>
+                  <p>• Payment confirmation within minutes</p>
+                </div>
+              </div>
+            </div>
+
+            {/* PayPal Payment */}
+            <div className="bg-white rounded-xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-200">
+              <div className="text-center mb-6">
+                <div className="w-24 h-16 bg-blue-500 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  {/* PayPal Logo */}
+                  <svg className="w-16 h-10" viewBox="0 0 160 40" fill="none">
+                    {/* PayPal background */}
+                    <rect x="2" y="2" width="156" height="36" rx="4" fill="#0070BA"/>
+                    {/* PayPal text */}
+                    <text x="80" y="24" textAnchor="middle" className="text-sm font-bold fill-white" style={{fontFamily: 'Arial, sans-serif'}}>PayPal</text>
+                    {/* PayPal icon elements */}
+                    <path d="M15 20 L25 20 M135 20 L145 20" stroke="white" strokeWidth="2" opacity="0.9"/>
+                    <circle cx="20" cy="20" r="2" fill="white" opacity="0.8"/>
+                    <circle cx="140" cy="20" r="2" fill="white" opacity="0.8"/>
+                  </svg>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900 mb-2">PayPal</h3>
+                <p className="text-gray-600">International payment solution</p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="bg-blue-50 rounded-lg p-4">
+                  <div className="flex items-center justify-between">
+                    <span className="font-semibold text-gray-900">Email:</span>
+                    <span className="text-blue-600 font-bold">omytechkenya@gmail.com</span>
+                  </div>
+                </div>
+                
+                <div className="text-sm text-gray-600 space-y-2">
+                  <p>• Send payment to the email above</p>
+                  <p>• Include your project reference</p>
+                  <p>• Instant payment confirmation</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Payment Instructions */}
+          <div className="mt-12 bg-gray-50 rounded-xl p-8 shadow-lg">
+            <h3 className="text-2xl font-bold text-gray-900 mb-6 text-center">Payment Instructions</h3>
+            <div className="grid md:grid-cols-2 gap-8">
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">For M-Pesa Payments:</h4>
+                <ol className="list-decimal list-inside space-y-2 text-gray-600">
+                  <li>Go to your M-Pesa menu</li>
+                  <li>Select "Send Money"</li>
+                  <li>Enter phone number: <span className="font-semibold text-green-600">0745511354</span></li>
+                  <li>Enter the amount for your selected package</li>
+                  <li>Add your project reference in the message</li>
+                  <li>Confirm the transaction</li>
+                </ol>
+              </div>
+              <div>
+                <h4 className="text-lg font-semibold text-gray-900 mb-4">For PayPal Payments:</h4>
+                <ol className="list-decimal list-inside space-y-2 text-gray-600">
+                  <li>Log in to your PayPal account</li>
+                  <li>Click "Send & Request"</li>
+                  <li>Enter email: <span className="font-semibold text-blue-600">omytechkenya@gmail.com</span></li>
+                  <li>Enter the amount for your selected package</li>
+                  <li>Add your project reference in the note</li>
+                  <li>Complete the payment</li>
+                </ol>
+              </div>
+            </div>
+            
+            <div className="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+              <div className="flex items-start space-x-3">
+                <div className="w-5 h-5 bg-yellow-400 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                  <span className="text-yellow-800 text-xs font-bold">!</span>
+                </div>
+                <div>
+                  <p className="text-yellow-800 font-semibold mb-1">Important:</p>
+                  <p className="text-yellow-700 text-sm">
+                    Please include your project reference or contact information when making payments. 
+                    This helps us identify your payment and process your order quickly.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-4xl font-bold text-gray-900 mb-6">Frequently Asked Questions</h2>
@@ -241,7 +372,7 @@ const Pricing = () => {
                 answer: 'Yes, we create custom packages for unique requirements. Contact us to discuss your specific needs and get a tailored quote.'
               }
             ].map((faq, index) => (
-              <div key={index} className="bg-gray-50 rounded-xl p-6">
+              <div key={index} className="bg-white rounded-xl p-6">
                 <h3 className="text-lg font-bold text-gray-900 mb-3">{faq.question}</h3>
                 <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
               </div>
