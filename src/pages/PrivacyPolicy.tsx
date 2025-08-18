@@ -1,4 +1,4 @@
-import React from 'react';
+
 import { ShieldCheck, User, Eye, Lock, RefreshCw, Mail } from 'lucide-react';
 
 const PrivacyPolicy = () => (
@@ -53,7 +53,7 @@ const PrivacyPolicy = () => (
           </section>
           <section>
             <h2 className="flex items-center gap-2 text-2xl font-bold text-white mb-3"><Mail className="w-6 h-6 text-cyan-300" /> 7. Contact Us</h2>
-            <p className="text-cyan-100 text-base leading-relaxed">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:omytechkenya@gmail.com" className="text-cyan-400 underline hover:text-cyan-200 transition">omytechkenya@gmail.com</a>.</p>
+            <p className="text-cyan-100 text-base leading-relaxed">If you have any questions about this Privacy Policy, please contact us at <a href="mailto:info@omytech.co.ke" className="text-cyan-400 underline hover:text-cyan-200 transition">info@omytech.co.ke</a>.</p>
           </section>
         </div>
       </div>

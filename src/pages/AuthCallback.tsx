@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { account } from '../utils/appwrite';
 
 const ADMIN_EMAILS = [
-  'omytechkenya@gmail.com',
+  'info@omytech.co.ke',
 ];
 
 const AuthCallback = () => {

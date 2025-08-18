@@ -1,6 +1,5 @@
 import { databases, storage, account, ID } from './appwrite';
-import { Permission, Role } from 'appwrite';
-import { Query } from 'appwrite'; // Uncomment if you want to use queries
+import { Permission } from 'appwrite';
 
 // TODO: Set your new Appwrite Database, Collection, Bucket, and Notification Collection IDs here after recreating them in the Appwrite UI
 export const DATABASE_ID = import.meta.env.VITE_APPWRITE_DATABASE_ID;
@@ -8,18 +7,14 @@ export const PROJECTS_COLLECTION_ID = import.meta.env.VITE_APPWRITE_PROJECTS_COL
 export const BUCKET_ID = import.meta.env.VITE_APPWRITE_BUCKET_ID;
 export const NOTIFICATIONS_COLLECTION_ID = import.meta.env.VITE_APPWRITE_NOTIFICATIONS_COLLECTION_ID;
 
-// List of allowed admin emails
-const ADMIN_EMAILS = [
-  'omytechkenya@gmail.com',
-];
+
 
 // Use email as id and name for now
 export const ADMINS = [
-  { id: '68809f307ab7b1c5faa6', name: 'omytechkenya@gmail.com', email: 'omytechkenya@gmail.com' },
+  { id: '68809f307ab7b1c5faa6', name: 'info@omytech.co.ke', email: 'info@omytech.co.ke' },
 ];
 
 export async function fetchUserProjects() {
-  const user = await account.get();
   const response = await databases.listDocuments(
     DATABASE_ID,
     PROJECTS_COLLECTION_ID,
@@ -52,8 +47,7 @@ export async function createProject(form: {
   console.log('user:', user);
   console.log('userPermissions:', userPermissions);
 
-  // 2. Pick a random admin
-  const randomAdmin = ADMINS[Math.floor(Math.random() * ADMINS.length)];
+  
 
   // 3. Upload files with permissions
   const fileIds = [];
@@ -110,7 +104,6 @@ export async function fetchUserNotifications() {
 }
 
 export async function deleteProject(projectId: string) {
-  const user = await account.get();
   // Fetch the project to get clientId, adminId, and name before deleting
   const project = await databases.getDocument(
     DATABASE_ID,

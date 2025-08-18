@@ -69,7 +69,7 @@ const Contact = () => {
       title: 'Email Us',
       value: 'contact@omytech.com', // UI email
       description: 'Send us an email anytime!',
-      action: 'mailto:omytechkenya@gmail.com' // real email
+      action: 'mailto:info@omytech.co.ke' // real email
     },
     {
       icon: Phone,

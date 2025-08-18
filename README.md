@@ -46,8 +46,8 @@ Visit us at: [https://omytech.vercel.app](https://omytech.vercel.app)
 
 ## 📧 Contact
 
-- **Email**: omytechkenya@gmail.com  
-- **Phone**: +254 745 511 354  
+- **Email**: info@omytech.co.ke  
+- **Phone**: +254-715-367-859  
 - **Socials**: Coming soon!
 
 ---

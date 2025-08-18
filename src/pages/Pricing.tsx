@@ -316,7 +316,7 @@ const Pricing = () => {
                 <div className="bg-blue-50 rounded-lg p-4">
                   <div className="flex items-center justify-between">
                     <span className="font-semibold text-gray-900">Email:</span>
-                    <span className="text-blue-600 font-bold">omytechkenya@gmail.com</span>
+                    <span className="text-blue-600 font-bold">info@omytech.co.ke</span>
                   </div>
                 </div>
                 
@@ -349,7 +349,7 @@ const Pricing = () => {
                 <ol className="list-decimal list-inside space-y-2 text-gray-600">
                   <li>Log in to your PayPal account</li>
                   <li>Click "Send & Request"</li>
-                  <li>Enter email: <span className="font-semibold text-blue-600">omytechkenya@gmail.com</span></li>
+                  <li>Enter email: <span className="font-semibold text-blue-600">info@omytech.co.ke</span></li>
                   <li>Enter the amount for your selected package</li>
                   <li>Add your project reference in the note</li>
                   <li>Complete the payment</li>

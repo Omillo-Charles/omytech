@@ -35,7 +35,7 @@ const Contact = () => {
     {
       icon: Phone,
       title: 'Call Us',
-      value: '+254 745 511 354',
+      value: '+254-715-367-859',
       description: 'Mon-Fri 9am-6pm EST'
     },
     {

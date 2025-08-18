@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Menu, X, LogOut } from 'lucide-react';
 import Logo from './Logo';
 import { account } from '../utils/appwrite';
 
 const ADMIN_EMAILS = [
-  'omytechkenya@gmail.com',
+  'info@omytech.co.ke',
 ];
 
 const Header = () => {
