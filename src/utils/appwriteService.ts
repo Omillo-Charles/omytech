@@ -11,7 +11,7 @@ export const NOTIFICATIONS_COLLECTION_ID = import.meta.env.VITE_APPWRITE_NOTIFIC
 
 // Use email as id and name for now
 export const ADMINS = [
-  { id: '68809f307ab7b1c5faa6', name: 'info@omytech.co.ke', email: 'info@omytech.co.ke' },
+  { id: '68809f307ab7b1c5faa6', name: 'omytechkenya@gmail.com', email: 'omytechkenya@gmail.com' },
 ];
 
 export async function fetchUserProjects() {

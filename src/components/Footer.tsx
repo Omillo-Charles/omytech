@@ -8,6 +8,7 @@ import {
   Linkedin, 
   Instagram,
   ArrowUp,
+  Youtube,
 } from 'lucide-react';
 import Logo from './Logo';
 import React from 'react';
@@ -50,10 +51,12 @@ const Footer = () => {
   };
 
   const socialLinks = [
-    { icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61578570897248&mibextid=rS40aB7S9Ucbxw6v', name: 'Facebook' },
+    { icon: Facebook, href: 'https://www.facebook.com/omytech_kenya', name: 'Facebook' },
     { icon: 'x-twitter', href: 'https://x.com/omytech_kenya', name: 'X' },
     { icon: Linkedin, href: 'https://www.linkedin.com/in/omytech-kenya/', name: 'LinkedIn' },
-    { icon: Instagram, href: 'https://instagram.com/omytech_kenya', name: 'Instagram' }
+    { icon: Instagram, href: 'https://instagram.com/omytech_kenya', name: 'Instagram' },
+    { icon: 'tiktok', href: 'https://tiktok.com/@omytech_kenya', name: 'TikTok' },
+    { icon: Youtube, href: 'https://youtube.com/@omytech_kenya', name: 'YouTube' }
   ];
 
   const currentYear = new Date;
@@ -84,7 +87,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-cyan-400" />
-                <span className="text-gray-300">info@omytech.com</span>
+                <span className="text-gray-300">info@omytech.co.ke</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-cyan-400" />
@@ -171,6 +174,8 @@ const Footer = () => {
               >
                 {social.icon === 'x-twitter' ? (
                   <i className="bi bi-twitter-x text-[20px]" />
+                ) : social.icon === 'tiktok' ? (
+                  <i className="bi bi-tiktok text-[20px]" />
                 ) : (
                   React.createElement(social.icon, { className: 'w-5 h-5' })
                 )}

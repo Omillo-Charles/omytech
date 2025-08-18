@@ -1,16 +1,13 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useState } from 'react';
 import { account } from '../utils/appwrite';
 import type { OAuthProvider } from 'appwrite';
 
-const ADMIN_EMAILS = [
-  'info@omytech.co.ke',
-];
+
 
 const Auth = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const navigate = useNavigate();
+
 
   const handleOAuth = async (provider: string) => {
     setError('');

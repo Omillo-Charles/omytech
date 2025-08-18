@@ -67,16 +67,16 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      value: 'contact@omytech.com', // UI email
+      value: 'info@omytech.co.ke', // UI email
       description: 'Send us an email anytime!',
       action: 'mailto:info@omytech.co.ke' // real email
     },
     {
       icon: Phone,
       title: 'Call Us',
-      value: '0745511354',
+      value: '+254-715-367-859',
       description: 'Mon-Fri 9am-6pm EST',
-      action: 'tel:0745511354'
+      action: 'tel:+254715367859'
     },
     {
       icon: MapPin,

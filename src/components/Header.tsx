@@ -5,7 +5,7 @@ import Logo from './Logo';
 import { account } from '../utils/appwrite';
 
 const ADMIN_EMAILS = [
-  'info@omytech.co.ke',
+  'omytechkenya@gmail.com',
 ];
 
 const Header = () => {
