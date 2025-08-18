@@ -42,7 +42,7 @@ OMYTECH is a creative tech agency focused on empowering businesses, startups, an
 
 ## 🌍 Website
 
-Visit us at: [https://omytech.vercel.app](https://omytech.co.ke)
+Visit us at: [https://omytech.co.ke](https://omytech.co.ke)
 
 ## 📧 Contact
 
