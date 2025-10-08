@@ -13,17 +13,20 @@ OMYTECH is a creative tech agency focused on empowering businesses, startups, an
 ## 💼 Services We Offer
 
 - ✅ **Web Development**
+
   - Business Websites
   - E-commerce Platforms
   - Chama Management Systems
   - Blogs & Portfolios
 
 - ✅ **Mobile App Development**
+
   - React Native Apps (iOS + Android)
   - Firebase-Integrated Apps
   - Scalable and Fast Prototypes
 
 - ✅ **Tech Support & Automation**
+
   - Systems Integration
   - Workflow Automation (n8n, Zapier, etc.)
   - Website Maintenance and Hosting
@@ -36,7 +39,7 @@ OMYTECH is a creative tech agency focused on empowering businesses, startups, an
 ## 🛠️ Tech Stack
 
 - **Frontend**: React, Next.js, Tailwind CSS
-- **Backend**: Firebase, Appwrite, Node.js
+- **Backend**: Node.js
 - **Mobile**: React Native
 - **Tools**: Vercel, GitHub, Figma, n8n
 
@@ -46,8 +49,8 @@ Visit us at: [https://omytech.co.ke](https://omytech.co.ke)
 
 ## 📧 Contact
 
-- **Email**: info@omytech.co.ke  
-- **Phone**: +254-715-367-859  
+- **Email**: info@omytech.co.ke
+- **Phone**: +254-715-367-859
 - **Socials**: @omytech_kenya
 
 ---

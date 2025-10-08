@@ -12,7 +12,6 @@
   "dependencies": {
     "@headlessui/react": "^2.2.6",
     "@vercel/analytics": "^1.5.0",
-    "appwrite": "^18.1.1",
     "bootstrap-icons": "^1.13.1",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",

@@ -1,13 +1,13 @@
-import React from 'react';
-import { Smartphone, CheckCircle } from 'lucide-react';
+import React from "react";
+import { Smartphone, CheckCircle } from "lucide-react";
 
 const features = [
-  'iOS & Android',
-  'React Native',
-  'Flutter',
-  'API Integration',
-  'Push Notifications',
-  'App Store Optimization',
+  "iOS & Android",
+  "React Native",
+  "Flutter",
+  "API Integration",
+  "Push Notifications",
+  "App Store Optimization",
 ];
 
 const ServiceMobileAppDevelopment = () => (
@@ -18,15 +18,23 @@ const ServiceMobileAppDevelopment = () => (
         <span className="w-20 h-20 flex items-center justify-center rounded-2xl bg-gradient-to-r from-purple-500 to-pink-500 mb-4 shadow-lg">
           <Smartphone className="w-10 h-10 text-white" />
         </span>
-        <h1 className="text-5xl font-bold text-purple-400 mb-4">Mobile App Development</h1>
+        <h1 className="text-5xl font-bold text-purple-400 mb-4">
+          Mobile App Development
+        </h1>
         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-          Mobile apps put your business in your customer&apos;s pocket. A well-designed app increases engagement, loyalty, and accessibility, allowing you to deliver personalized experiences and real-time services. Stay ahead of the competition and meet your audience where they are—on their phones.
+          Mobile apps put your business in your customer&apos;s pocket. A
+          well-designed app increases engagement, loyalty, and accessibility,
+          allowing you to deliver personalized experiences and real-time
+          services. Stay ahead of the competition and meet your audience where
+          they are—on their phones.
         </p>
       </div>
     </section>
     {/* Features Grid */}
     <section className="max-w-3xl mx-auto bg-gradient-to-br from-gray-900 to-black rounded-3xl shadow-2xl p-10 mb-12 border border-purple-900/40">
-      <h2 className="text-2xl font-bold text-purple-400 mb-6 text-center">Key Features</h2>
+      <h2 className="text-2xl font-bold text-purple-400 mb-6 text-center">
+        Key Features
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {features.map((feature, idx) => (
           <div key={idx} className="flex items-center space-x-3">
@@ -38,11 +46,14 @@ const ServiceMobileAppDevelopment = () => (
     </section>
     {/* CTA Section */}
     <section className="text-center">
-      <a href="/auth" className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-full font-semibold shadow-lg hover:from-purple-700 hover:to-pink-700 transition text-lg">
+      <a
+        href="/contact"
+        className="inline-block bg-gradient-to-r from-purple-600 to-pink-600 text-white px-10 py-4 rounded-full font-semibold shadow-lg hover:from-purple-700 hover:to-pink-700 transition text-lg"
+      >
         Get Started
       </a>
     </section>
   </div>
 );
 
-export default ServiceMobileAppDevelopment; 
+export default ServiceMobileAppDevelopment;

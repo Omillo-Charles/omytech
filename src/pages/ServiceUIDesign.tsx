@@ -1,13 +1,13 @@
-import React from 'react';
-import { Palette, CheckCircle } from 'lucide-react';
+import React from "react";
+import { Palette, CheckCircle } from "lucide-react";
 
 const features = [
-  'User Research',
-  'Prototyping',
-  'Design Systems',
-  'Usability Testing',
-  'Brand Identity',
-  'Interactive Design',
+  "User Research",
+  "Prototyping",
+  "Design Systems",
+  "Usability Testing",
+  "Brand Identity",
+  "Interactive Design",
 ];
 
 const ServiceUIDesign = () => (
@@ -20,13 +20,18 @@ const ServiceUIDesign = () => (
         </span>
         <h1 className="text-5xl font-bold text-pink-400 mb-4">UI/UX Design</h1>
         <p className="text-lg text-gray-300 max-w-2xl mx-auto">
-          Exceptional UI/UX design is the key to user satisfaction and business growth. A beautiful, intuitive interface keeps users engaged, reduces bounce rates, and increases conversions. Make your brand memorable with a seamless and delightful digital experience.
+          Exceptional UI/UX design is the key to user satisfaction and business
+          growth. A beautiful, intuitive interface keeps users engaged, reduces
+          bounce rates, and increases conversions. Make your brand memorable
+          with a seamless and delightful digital experience.
         </p>
       </div>
     </section>
     {/* Features Grid */}
     <section className="max-w-3xl mx-auto bg-gradient-to-br from-gray-900 to-black rounded-3xl shadow-2xl p-10 mb-12 border border-pink-900/40">
-      <h2 className="text-2xl font-bold text-pink-400 mb-6 text-center">Key Features</h2>
+      <h2 className="text-2xl font-bold text-pink-400 mb-6 text-center">
+        Key Features
+      </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         {features.map((feature, idx) => (
           <div key={idx} className="flex items-center space-x-3">
@@ -38,11 +43,14 @@ const ServiceUIDesign = () => (
     </section>
     {/* CTA Section */}
     <section className="text-center">
-      <a href="/auth" className="inline-block bg-gradient-to-r from-pink-600 to-rose-600 text-white px-10 py-4 rounded-full font-semibold shadow-lg hover:from-pink-700 hover:to-rose-700 transition text-lg">
+      <a
+        href="/contact"
+        className="inline-block bg-gradient-to-r from-pink-600 to-rose-600 text-white px-10 py-4 rounded-full font-semibold shadow-lg hover:from-pink-700 hover:to-rose-700 transition text-lg"
+      >
         Get Started
       </a>
     </section>
   </div>
 );
 
-export default ServiceUIDesign; 
+export default ServiceUIDesign;
