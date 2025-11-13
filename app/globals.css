@@ -244,6 +244,7 @@ body {
     top: 80px;
     left: 0;
     right: 0;
+    width: 100%;
     background-color: var(--color-white);
     flex-direction: column;
     gap: 0;
@@ -267,6 +268,7 @@ body {
     padding: 0;
     width: 100%;
     border-bottom: 1px solid #f0f0f0;
+    box-sizing: border-box;
   }
 
   .nav-links li:last-child {
@@ -275,8 +277,11 @@ body {
 
   .nav-links li a {
     display: block;
-    padding: 1.25rem 2rem;
+    padding: 1.25rem 1.5rem;
     width: 100%;
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
   }
 
   .mobile-auth-item {
@@ -285,9 +290,10 @@ body {
 
   .mobile-auth-link {
     display: block;
-    padding: 1.25rem 2rem !important;
+    padding: 1.25rem 1.5rem !important;
     width: 100%;
     font-weight: 600;
+    box-sizing: border-box;
   }
 
   .mobile-auth-link.register {
@@ -328,7 +334,7 @@ body {
 
 @media (max-width: 768px) {
   .nav-container {
-    padding: 1rem 1.5rem;
+    padding: 1rem 1rem;
   }
 
   .brand-name {
@@ -341,6 +347,46 @@ body {
 
   .logo-box {
     padding: 0.4rem;
+  }
+
+  .nav-links li a {
+    padding: 1rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .mobile-auth-link {
+    padding: 1rem 1rem !important;
+  }
+
+  .mobile-auth-link.login {
+    margin: 0.5rem 0.75rem 1rem 0.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .nav-container {
+    padding: 0.75rem 0.75rem;
+  }
+
+  .brand-name {
+    font-size: 1.1rem;
+  }
+
+  .brand-location {
+    font-size: 0.65rem;
+  }
+
+  .nav-links li a {
+    padding: 0.875rem 0.75rem;
+    font-size: 0.9rem;
+  }
+
+  .mobile-auth-link {
+    padding: 0.875rem 0.75rem !important;
+  }
+
+  .mobile-auth-link.login {
+    margin: 0.5rem 0.5rem 1rem 0.5rem;
   }
 }
 
