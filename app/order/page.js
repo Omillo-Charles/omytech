@@ -1,9 +1,9 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FiCheck, FiShoppingCart } from 'react-icons/fi';
 
-export default function OrderPage() {
+function OrderForm() {
   const searchParams = useSearchParams();
   const serviceParam = searchParams.get('service') || 'Web Development';
   
@@ -611,5 +611,14 @@ export default function OrderPage() {
         </form>
       </div>
     </div>
+  );
+}
+
+
+export default function OrderPage() {
+  return (
+    <Suspense fallback={<div className="quote-page"><div className="quote-container"><p>Loading...</p></div></div>}>
+      <OrderForm />
+    </Suspense>
   );
 }

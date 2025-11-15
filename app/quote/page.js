@@ -1,9 +1,9 @@
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { FiCheck, FiSend } from 'react-icons/fi';
 
-export default function QuotePage() {
+function QuoteForm() {
   const searchParams = useSearchParams();
   const serviceParam = searchParams.get('service') || 'Web Development';
   
@@ -543,5 +543,14 @@ export default function QuotePage() {
         </form>
       </div>
     </div>
+  );
+}
+
+
+export default function QuotePage() {
+  return (
+    <Suspense fallback={<div className="quote-page"><div className="quote-container"><p>Loading...</p></div></div>}>
+      <QuoteForm />
+    </Suspense>
   );
 }
