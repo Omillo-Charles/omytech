@@ -33,6 +33,36 @@ export default function PortfolioPage() {
       link: "https://ntcogk.vercel.app",
       tags: ["Next.js", "React", "CMS", "Community"],
     },
+    {
+      id: 4,
+      title: "Alianda Rollins - Professional Nurse Portfolio",
+      description:
+        "Professional portfolio website for Alianda Rollins, showcasing nursing expertise, qualifications, and healthcare services with a clean, modern design.",
+      category: "Web Development",
+      image: "/portfolioImages/rollins.png",
+      link: "https://rollinsalianda.vercel.app",
+      tags: ["Next.js", "React", "Portfolio", "Healthcare"],
+    },
+    {
+      id: 5,
+      title: "ZOMY - Freelance Client Collaboration Platform",
+      description:
+        "Comprehensive platform connecting freelancers with clients, featuring project management, real-time communication, secure payments, and seamless collaboration tools.",
+      category: "Web Development",
+      image: "/portfolioImages/zomy.png",
+      link: "https://freelance.omytech.co.ke",
+      tags: ["Next.js", "React", "Platform", "Collaboration", "Full-Stack"],
+    },
+    {
+      id: 6,
+      title: "Promptomy - AI Marketplace",
+      description:
+        "Innovative AI-powered marketplace for buying and selling prompts, featuring advanced search, prompt testing, secure transactions, and a vibrant community of AI enthusiasts.",
+      category: "Web Development",
+      image: "/portfolioImages/promptomy.png",
+      link: "https://prompts.omytech.co.ke",
+      tags: ["Next.js", "React", "AI", "Marketplace", "Full-Stack"],
+    },
   ];
 
   return (
