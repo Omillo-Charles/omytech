@@ -9,7 +9,7 @@ export const metadata = {
     description: "Leading technology company providing web development, mobile apps, UI/UX design, and digital solutions in Kenya and across Africa.",
   },
   verification: {
-    google: "rryBGYyF_gIWRFDIFOLhUtgkcNk_4mUrgYYunr8R3C8",
+    google: "j54xnHHGgdTOttZZomxNJXC5sOBP4bXhvC0YnIa-UYk",
   },
 };
 
