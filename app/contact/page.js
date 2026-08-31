@@ -21,8 +21,8 @@ const contactMethods = [
   { 
     icon: <MailIcon />, 
     label: "Email", 
-    value: "info@omytech.co.ke", 
-    link: "mailto:info@omytech.co.ke",
+    value: "info@omytechkenya.co.ke", 
+    link: "mailto:info@omytechkenya.co.ke",
     color: "#3b82f6"
   },
   { 

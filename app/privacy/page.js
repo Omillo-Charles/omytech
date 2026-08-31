@@ -161,8 +161,8 @@ export default function PrivacyPage() {
                 <div className="space-y-2">
                   <p className="text-gray-400 text-xs md:text-sm">
                     <span className="text-gray-500">Email:</span>{" "}
-                    <a href="mailto:info@omytech.co.ke" className="text-blue-400 hover:text-blue-300 transition-colors">
-                      info@omytech.co.ke
+                    <a href="mailto:info@omytechkenya.co.ke" className="text-blue-400 hover:text-blue-300 transition-colors">
+                      info@omytechkenya.co.ke
                     </a>
                   </p>
                   <p className="text-gray-400 text-xs md:text-sm">

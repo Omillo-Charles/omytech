@@ -173,8 +173,8 @@ export default function TermsPage() {
                 <div className="space-y-2">
                   <p className="text-gray-400 text-xs md:text-sm">
                     <span className="text-gray-500">Email:</span>{" "}
-                    <a href="mailto:info@omytech.co.ke" className="text-cyan-400 hover:text-cyan-300 transition-colors">
-                      info@omytech.co.ke
+                    <a href="mailto:info@omytechkenya.co.ke" className="text-cyan-400 hover:text-cyan-300 transition-colors">
+                      info@omytechkenya.co.ke
                     </a>
                   </p>
                   <p className="text-gray-400 text-xs md:text-sm">

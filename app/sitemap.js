@@ -1,5 +1,5 @@
 export default function sitemap() {
-  const baseUrl = 'https://omytech.co.ke';
+  const baseUrl = 'https://omytechkenya.co.ke';
   
   return [
     {

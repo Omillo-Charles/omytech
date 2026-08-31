@@ -7,6 +7,6 @@ export default function robots() {
         disallow: ['/login', '/register'],
       },
     ],
-    sitemap: 'https://omytech.co.ke/sitemap.xml',
+    sitemap: 'https://omytechkenya.co.ke/sitemap.xml',
   };
 }

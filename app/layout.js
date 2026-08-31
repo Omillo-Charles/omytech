@@ -45,7 +45,7 @@ export const metadata = {
   authors: [{ name: "OMYTECH" }],
   creator: "OMYTECH",
   publisher: "OMYTECH",
-  metadataBase: new URL("https://omytech.co.ke"),
+  metadataBase: new URL("https://omytechkenya.co.ke"),
   alternates: {
     canonical: "/",
   },
@@ -53,7 +53,7 @@ export const metadata = {
     title: "OMYTECH - Innovating the Future, Empowering Africa",
     description:
       "Leading technology company in Kenya providing innovative web development, mobile apps, and digital solutions across Africa.",
-    url: "https://omytech.co.ke",
+    url: "https://omytechkenya.co.ke",
     siteName: "OMYTECH",
     images: [
       {

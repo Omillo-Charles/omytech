@@ -131,11 +131,11 @@ export default function Footer() {
             <ul className="space-y-3">
               <li>
                 <a
-                  href="mailto:info@omytech.co.ke"
+                  href="mailto:info@omytechkenya.co.ke"
                   className="text-gray-400 hover:text-white transition-colors text-[10px] md:text-sm flex items-start gap-3 group"
                 >
                   <Mail className="w-4 h-4 mt-0.5 flex-shrink-0 text-blue-400" />
-                  <span style={{ lineHeight: '1.4', overflow: 'visible' }}>info@omytech.co.ke</span>
+                  <span style={{ lineHeight: '1.4', overflow: 'visible' }}>info@omytechkenya.co.ke</span>
                 </a>
               </li>
               <li>
