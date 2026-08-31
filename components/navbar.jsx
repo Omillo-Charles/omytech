@@ -47,8 +47,8 @@ export default function Navbar() {
                 <Image src="/omytechlogo.png" alt="OMYTECH" width={24} height={24} />
               </div>
               <div>
-                <div className="text-white font-bold text-sm md:text-lg leading-none">OMYTECH</div>
-                <div className="text-blue-400 text-[9px] font-bold uppercase tracking-wider">Kenya</div>
+                <div className="text-white font-bold text-sm md:text-lg leading-none font-glacial tracking-wide">OMYTECH</div>
+                <div className="text-blue-400 text-[9px] font-bold uppercase tracking-wider font-glacial">Kenya</div>
               </div>
             </Link>
 
@@ -60,7 +60,7 @@ export default function Navbar() {
                   <Link
                     key={link.name}
                     href={link.href}
-                    className={`font-medium transition-colors relative group ${
+                    className={`font-glacial font-medium transition-colors relative group ${
                       isActive ? 'text-cyan-400' : 'text-gray-400 hover:text-white'
                     }`}
                   >
@@ -77,7 +77,7 @@ export default function Navbar() {
             <div className="hidden md:block">
               <Link
                 href="/contact"
-                className="px-6 py-2.5 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-all hover:scale-105"
+                className="px-6 py-2.5 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition-all hover:scale-105 font-glacial"
               >
                 Get Started
               </Link>
@@ -137,7 +137,7 @@ export default function Navbar() {
                         key={link.name}
                         href={link.href}
                         onClick={() => setIsOpen(false)}
-                        className={`text-xs font-medium py-2.5 px-4 rounded-lg transition-all ${
+                        className={`text-xs font-glacial font-medium py-2.5 px-4 rounded-lg transition-all ${
                           isActive 
                             ? 'text-cyan-400 bg-cyan-400/10' 
                             : 'text-gray-400 hover:text-white hover:bg-white/5'
@@ -152,7 +152,7 @@ export default function Navbar() {
                 <Link
                   href="/contact"
                   onClick={() => setIsOpen(false)}
-                  className="w-full py-2.5 bg-white text-black text-xs font-semibold rounded-full hover:bg-gray-100 transition-all text-center"
+                  className="w-full py-2.5 bg-white text-black text-xs font-glacial font-semibold rounded-full hover:bg-gray-100 transition-all text-center"
                 >
                   Get Started
                 </Link>

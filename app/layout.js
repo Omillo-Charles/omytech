@@ -3,25 +3,57 @@ import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
 
-const ubuntu = localFont({
+
+const firaSans = localFont({
   src: [
     {
-      path: "../public/ubuntufont/ubuntu-font-family-0.83/Ubuntu-R.ttf",
+      path: "../public/fonts/fira-sans/FiraSans-Light.ttf",
+      weight: "300",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/fira-sans/FiraSans-Regular.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../public/ubuntufont/ubuntu-font-family-0.83/Ubuntu-M.ttf",
+      path: "../public/fonts/fira-sans/FiraSans-Medium.ttf",
       weight: "500",
       style: "normal",
     },
     {
-      path: "../public/ubuntufont/ubuntu-font-family-0.83/Ubuntu-B.ttf",
+      path: "../public/fonts/fira-sans/FiraSans-SemiBold.ttf",
+      weight: "600",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/fira-sans/FiraSans-Bold.ttf",
       weight: "700",
       style: "normal",
     },
   ],
-  variable: "--font-ubuntu",
+  variable: "--font-fira-sans",
+});
+
+const glacialIndifference = localFont({
+  src: [
+    {
+      path: "../public/fonts/glacial-indifference/GlacialIndifference-Regular.otf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/glacial-indifference/GlacialIndifference-Italic.otf",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "../public/fonts/glacial-indifference/GlacialIndifference-Bold.otf",
+      weight: "700",
+      style: "normal",
+    },
+  ],
+  variable: "--font-glacial",
 });
 
 export const metadata = {
@@ -106,7 +138,7 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body
-        className={`${ubuntu.variable} antialiased`}
+        className={`${firaSans.variable} ${glacialIndifference.variable} antialiased`}
       >
         <AppRouterCacheProvider>
           <ClientLayout>{children}</ClientLayout>

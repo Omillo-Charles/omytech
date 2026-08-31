@@ -65,10 +65,10 @@ export default function ProjectsPortfolio({ className = "pt-28" }) {
             {/* Card Info Footer */}
             <div className="p-6 sm:p-8 md:p-10 flex items-center justify-between gap-4 border-t border-white/5 bg-[#0A0A0A]/90 backdrop-blur-md">
               <div>
-                <span className="inline-block text-[11px] sm:text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-1">
+                <span className="inline-block text-[11px] sm:text-xs font-fira font-semibold uppercase tracking-wider text-cyan-400 mb-1">
                   {project.category}
                 </span>
-                <h3 className="text-xl sm:text-3xl md:text-4xl font-bold text-white group-hover:text-cyan-400 transition-colors">
+                <h3 className="text-xl sm:text-3xl md:text-4xl font-glacial font-bold text-white group-hover:text-cyan-400 transition-colors">
                   {project.title}
                 </h3>
               </div>
@@ -87,27 +87,27 @@ export default function ProjectsPortfolio({ className = "pt-28" }) {
           transition={{ duration: 0.6 }}
           className="text-center max-w-3xl mx-auto pt-12 pb-4"
         >
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-bold text-white mb-8 leading-tight">
+          <h2 className="text-2xl sm:text-4xl md:text-5xl font-glacial font-bold text-white mb-8 leading-tight">
             Ready to get a website that converts or a custom tech solution?
           </h2>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
               href="tel:+254745511354"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-white text-black font-semibold text-base sm:text-lg rounded-full hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-lg shadow-white/10"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-2.5 bg-white text-black font-glacial font-bold text-sm sm:text-base rounded-xl hover:bg-gray-100 transition-all duration-300 hover:scale-[1.02] shadow-md shadow-white/10"
             >
-              <FaPhone className="w-5 h-5 text-blue-600" />
-              Call +254 745 511 354
+              <FaPhone className="w-4 h-4 text-blue-600" />
+              Call Us
             </a>
 
             <a
               href={whatsappUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 bg-emerald-500 text-white font-semibold text-base sm:text-lg rounded-full hover:bg-emerald-400 transition-all duration-300 hover:scale-105 shadow-lg shadow-emerald-500/20"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-2.5 bg-emerald-500 text-white font-glacial font-bold text-sm sm:text-base rounded-xl hover:bg-emerald-400 transition-all duration-300 hover:scale-[1.02] shadow-md shadow-emerald-500/20"
             >
-              <FaWhatsapp className="w-6 h-6" />
-              Chat on WhatsApp
+              <FaWhatsapp className="w-5 h-5" />
+              Chat
             </a>
           </div>
         </motion.div>

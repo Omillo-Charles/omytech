@@ -62,11 +62,11 @@ export default function Footer() {
                 />
               </div>
               <div>
-                <div className="text-white font-bold text-base md:text-lg leading-none">OMYTECH</div>
-                <div className="text-blue-400 text-[9px] font-bold uppercase tracking-wider">Kenya</div>
+                <div className="text-white font-bold text-base md:text-lg leading-none font-glacial tracking-wide">OMYTECH</div>
+                <div className="text-blue-400 text-[9px] font-bold uppercase tracking-wider font-glacial">Kenya</div>
               </div>
             </Link>
-            <p className="text-[10px] md:text-sm text-gray-400 mb-6 leading-relaxed" style={{ lineHeight: '1.6', overflow: 'visible' }}>
+            <p className="text-[10px] md:text-sm text-gray-400 mb-6 leading-relaxed font-fira" style={{ lineHeight: '1.6', overflow: 'visible' }}>
               Innovating the future, empowering Africa with cutting-edge technology solutions.
             </p>
             {/* Social Links */}
@@ -91,8 +91,8 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="text-xs md:text-base text-white font-semibold mb-4">Quick Links</h3>
-            <ul className="space-y-3">
+            <h3 className="text-xs md:text-base text-white font-semibold mb-4 font-glacial tracking-wide">Quick Links</h3>
+            <ul className="space-y-3 font-fira">
               {quickLinks.map((link, index) => (
                 <li key={index}>
                   <Link
@@ -109,8 +109,8 @@ export default function Footer() {
 
           {/* Services */}
           <div>
-            <h3 className="text-xs md:text-base text-white font-semibold mb-4">Services</h3>
-            <ul className="space-y-3">
+            <h3 className="text-xs md:text-base text-white font-semibold mb-4 font-glacial tracking-wide">Services</h3>
+            <ul className="space-y-3 font-fira">
               {services.map((service, index) => (
                 <li key={index}>
                   <Link
@@ -127,8 +127,8 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-xs md:text-base text-white font-semibold mb-4">Get in Touch</h3>
-            <ul className="space-y-3">
+            <h3 className="text-xs md:text-base text-white font-semibold mb-4 font-glacial tracking-wide">Get in Touch</h3>
+            <ul className="space-y-3 font-fira">
               <li>
                 <a
                   href="mailto:info@omytechkenya.co.ke"
@@ -163,7 +163,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/5">
+        <div className="pt-8 border-t border-white/5 font-fira">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-[10px] md:text-sm text-gray-500">
               © {currentYear} OMYTECH. All rights reserved.
