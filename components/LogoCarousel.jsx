@@ -19,7 +19,7 @@ export default function LogoCarousel() {
   const duplicatedCompanies = [...companies, ...companies, ...companies];
 
   return (
-    <section className="relative py-12 overflow-hidden bg-[#0A0A0A]">
+    <section className="relative py-12 pb-24 overflow-hidden bg-[#0A0A0A]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-8">
           <p className="text-gray-500 text-[10px] md:text-sm font-medium uppercase tracking-wider">

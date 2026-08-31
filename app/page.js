@@ -1,5 +1,5 @@
-import Hero from "@/components/hero";
 import LogoCarousel from "@/components/LogoCarousel";
+import ProjectsPortfolio from "@/components/ProjectsPortfolio";
 
 export const metadata = {
   title: "Home",
@@ -15,8 +15,8 @@ export const metadata = {
 
 export default function Home() {
   return (
-    <main>
-      <Hero />
+    <main className="min-h-screen bg-[#0A0A0A]">
+      <ProjectsPortfolio />
       <LogoCarousel />
     </main>
   );

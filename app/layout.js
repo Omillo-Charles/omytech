@@ -1,4 +1,5 @@
 import localFont from "next/font/local";
+import { AppRouterCacheProvider } from "@mui/material-nextjs/v15-appRouter";
 import "./globals.css";
 import ClientLayout from "./ClientLayout";
 
@@ -107,7 +108,9 @@ export default function RootLayout({ children }) {
       <body
         className={`${ubuntu.variable} antialiased`}
       >
-        <ClientLayout>{children}</ClientLayout>
+        <AppRouterCacheProvider>
+          <ClientLayout>{children}</ClientLayout>
+        </AppRouterCacheProvider>
       </body>
     </html>
   );
