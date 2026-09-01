@@ -13,6 +13,7 @@ import {
   FaXTwitter,
   FaInstagram,
   FaGithub,
+  FaFacebook,
 } from "react-icons/fa6";
 
 const contactMethods = [
@@ -40,6 +41,7 @@ const contactMethods = [
 ];
 
 const socialLinks = [
+  { icon: <FaFacebook size={20} />, label: "Facebook", link: "https://facebook.com/omyt3ch" },
   { icon: <FaXTwitter size={20} />, label: "X", link: "https://x.com/omyt3ch" },
   { icon: <FaInstagram size={20} />, label: "Instagram", link: "https://instagram.com/omyt3ch" },
   { icon: <FaGithub size={20} />, label: "GitHub", link: "https://github.com/omyt3ch" },

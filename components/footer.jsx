@@ -8,6 +8,7 @@ import {
   FaXTwitter,
   FaInstagram,
   FaGithub,
+  FaFacebook,
 } from "react-icons/fa6";
 
 export default function Footer() {
@@ -32,6 +33,7 @@ export default function Footer() {
   ];
 
   const socialLinks = [
+    { icon: FaFacebook, href: "https://facebook.com/omyt3ch", label: "Facebook" },
     { icon: FaXTwitter, href: "https://x.com/omyt3ch", label: "X" },
     { icon: FaInstagram, href: "https://instagram.com/omyt3ch", label: "Instagram" },
     { icon: FaGithub, href: "https://github.com/omyt3ch", label: "GitHub" },
