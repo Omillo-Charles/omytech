@@ -6,9 +6,7 @@ import Image from "next/image";
 import { Mail, Phone, MapPin, ArrowRight } from "lucide-react";
 import {
   FaXTwitter,
-  FaFacebook,
   FaInstagram,
-  FaLinkedin,
   FaGithub,
 } from "react-icons/fa6";
 
@@ -34,11 +32,9 @@ export default function Footer() {
   ];
 
   const socialLinks = [
-    { icon: FaFacebook, href: "https://facebook.com/omytech_kenya", label: "Facebook" },
-    { icon: FaXTwitter, href: "https://x.com/omytech_kenya", label: "X" },
-    { icon: FaInstagram, href: "https://instagram.com/omytech_kenya", label: "Instagram" },
-    { icon: FaLinkedin, href: "https://linkedin.com/company/omytech-kenya", label: "LinkedIn" },
-    { icon: FaGithub, href: "https://github.com/omytech-kenya", label: "GitHub" },
+    { icon: FaXTwitter, href: "https://x.com/omyt3ch", label: "X" },
+    { icon: FaInstagram, href: "https://instagram.com/omyt3ch", label: "Instagram" },
+    { icon: FaGithub, href: "https://github.com/omyt3ch", label: "GitHub" },
   ];
 
   return (

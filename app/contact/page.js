@@ -11,9 +11,7 @@ import {
 } from "@mui/icons-material";
 import {
   FaXTwitter,
-  FaFacebook,
   FaInstagram,
-  FaLinkedin,
   FaGithub,
 } from "react-icons/fa6";
 
@@ -42,11 +40,9 @@ const contactMethods = [
 ];
 
 const socialLinks = [
-  { icon: <FaFacebook size={20} />, label: "Facebook", link: "https://facebook.com/omytech_kenya" },
-  { icon: <FaXTwitter size={20} />, label: "X", link: "https://x.com/omytech_kenya" },
-  { icon: <FaInstagram size={20} />, label: "Instagram", link: "https://instagram.com/omytech_kenya" },
-  { icon: <FaLinkedin size={20} />, label: "LinkedIn", link: "https://linkedin.com/company/omytech-kenya" },
-  { icon: <FaGithub size={20} />, label: "GitHub", link: "https://github.com/omytech-kenya" },
+  { icon: <FaXTwitter size={20} />, label: "X", link: "https://x.com/omyt3ch" },
+  { icon: <FaInstagram size={20} />, label: "Instagram", link: "https://instagram.com/omyt3ch" },
+  { icon: <FaGithub size={20} />, label: "GitHub", link: "https://github.com/omyt3ch" },
 ];
 
 export default function ContactPage() {
