@@ -14,6 +14,12 @@ const projects = [
     link: "/",
   },
   {
+    title: "Mhengagee",
+    category: "Media Group",
+    image: "/projects/mhengagee.png",
+    link: "https://mhengagee.co.ke",
+  },
+  {
     title: "Castra Households",
     category: "Households Seller",
     image: "/projects/castra.png",
