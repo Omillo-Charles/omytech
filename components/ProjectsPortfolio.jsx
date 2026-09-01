@@ -78,37 +78,6 @@ export default function ProjectsPortfolio({ className = "pt-28" }) {
           ))}
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-center max-w-3xl mx-auto pt-12 pb-4"
-        >
-          <h2 className="text-2xl sm:text-4xl md:text-5xl font-glacial font-bold text-white mb-8 leading-tight">
-            Ready to get a website that converts or a custom tech solution?
-          </h2>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="tel:+254745511354"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-2.5 bg-white text-black font-glacial font-bold text-sm sm:text-base rounded-xl hover:bg-gray-100 transition-all duration-300 hover:scale-[1.02] shadow-md shadow-white/10"
-            >
-              <FaPhone className="w-4 h-4 text-blue-600" />
-              Call Us
-            </a>
-
-            <a
-              href={whatsappUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-6 py-2.5 bg-emerald-500 text-white font-glacial font-bold text-sm sm:text-base rounded-xl hover:bg-emerald-400 transition-all duration-300 hover:scale-[1.02] shadow-md shadow-emerald-500/20"
-            >
-              <FaWhatsapp className="w-5 h-5" />
-              Chat
-            </a>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
