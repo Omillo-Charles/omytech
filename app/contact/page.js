@@ -2,9 +2,9 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { 
-  Mail as MailIcon, 
-  Phone as PhoneIcon, 
+import {
+  Mail as MailIcon,
+  Phone as PhoneIcon,
   Place as MapPinIcon,
   Send as SendIcon,
   CheckCircle as CheckIcon
@@ -16,24 +16,24 @@ import {
 } from "react-icons/fa6";
 
 const contactMethods = [
-  { 
-    icon: <MailIcon />, 
-    label: "Email", 
-    value: "info@omytechkenya.co.ke", 
+  {
+    icon: <MailIcon />,
+    label: "Email",
+    value: "info@omytechkenya.co.ke",
     link: "mailto:info@omytechkenya.co.ke",
     color: "#3b82f6"
   },
-  { 
-    icon: <PhoneIcon />, 
-    label: "Phone", 
-    value: "+254 715 367 859", 
+  {
+    icon: <PhoneIcon />,
+    label: "Phone",
+    value: "+254 715 367 859",
     link: "tel:+254715367859",
     color: "#10b981"
   },
-  { 
-    icon: <MapPinIcon />, 
-    label: "Location", 
-    value: "Nairobi, Kenya", 
+  {
+    icon: <MapPinIcon />,
+    label: "Location",
+    value: "Nairobi, Kenya",
     link: "https://maps.app.goo.gl/9HdWNNGa33NXyEkb9",
     color: "#f59e0b"
   },
@@ -65,16 +65,16 @@ export default function ContactPage() {
   const handleSubmit = (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     const whatsappMessage = `Hello OMYTECH Kenya,\n\nName: ${formData.name}\nEmail: ${formData.email}\nSubject: ${formData.subject}\n\nMessage: ${formData.message}`;
     const whatsappUrl = `https://wa.me/254715367859?text=${encodeURIComponent(whatsappMessage)}`;
-    
+
     // Open WhatsApp in a new tab
     window.open(whatsappUrl, '_blank');
-    
+
     setIsSubmitting(false);
     setIsSubmitted(true);
-    
+
     // Reset form after 3 seconds
     setTimeout(() => {
       setIsSubmitted(false);
@@ -143,9 +143,9 @@ export default function ContactPage() {
                   transition={{ delay: index * 0.1 }}
                   className="block bg-white/[0.02] border border-white/10 rounded-3xl p-6 backdrop-blur-sm hover:bg-white/[0.05] hover:border-white/20 transition-all duration-300 group"
                 >
-                  <div 
+                  <div
                     className="w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110"
-                    style={{ 
+                    style={{
                       backgroundColor: `${method.color}15`,
                       color: method.color
                     }}
