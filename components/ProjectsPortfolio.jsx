@@ -36,7 +36,6 @@ export default function ProjectsPortfolio({ className = "pt-28" }) {
   return (
     <section className={`relative pb-16 px-4 sm:px-6 md:px-8 bg-[#0A0A0A] ${className}`}>
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
-        {/* Portfolio Cards */}
         {projects.map((project, index) => (
           <motion.a
             key={index}
@@ -49,7 +48,6 @@ export default function ProjectsPortfolio({ className = "pt-28" }) {
             transition={{ duration: 0.6, delay: index * 0.1 }}
             className="group block w-full bg-white/[0.02] border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden hover:border-white/25 transition-all duration-500 hover:shadow-[0_0_50px_rgba(0,114,206,0.12)]"
           >
-            {/* Project Image Container */}
             <div className="relative w-full aspect-[4/3] sm:aspect-auto sm:h-[460px] md:h-[560px] lg:h-[650px] overflow-hidden bg-white/5">
               <Image
                 src={project.image}
@@ -62,7 +60,6 @@ export default function ProjectsPortfolio({ className = "pt-28" }) {
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/20 to-transparent opacity-70 group-hover:opacity-40 transition-opacity duration-500" />
             </div>
 
-            {/* Card Info Footer */}
             <div className="p-4 sm:p-8 md:p-10 flex items-center justify-between gap-3 border-t border-white/5 bg-[#0A0A0A]/90 backdrop-blur-md">
               <div>
                 <span className="inline-block text-[10px] sm:text-xs font-fira font-semibold uppercase tracking-wider text-cyan-400 mb-0.5 sm:mb-1">
@@ -79,7 +76,6 @@ export default function ProjectsPortfolio({ className = "pt-28" }) {
           </motion.a>
         ))}
 
-        {/* Client Catch CTA Section - Plain text and buttons */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
