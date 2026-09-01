@@ -8,6 +8,12 @@ import { FaWhatsapp, FaPhone } from "react-icons/fa6";
 
 const projects = [
   {
+    title: "OMYTECH Kenya",
+    category: "Tech Service Provider",
+    image: "/projects/omytech.png",
+    link: "/",
+  },
+  {
     title: "Castra Households",
     category: "Households Seller",
     image: "/projects/castra.png",
