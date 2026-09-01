@@ -52,13 +52,6 @@ const values = [
   }
 ];
 
-const stats = [
-  { label: "Projects Delivered", value: "200+", color: "#3b82f6" },
-  { label: "Happy Clients", value: "50+", color: "#10b981" },
-  { label: "Years Experience", value: "5+", color: "#f59e0b" },
-  { label: "Team Members", value: "15+", color: "#06b6d4" }
-];
-
 export default function AboutPage() {
   return (
     <div className="min-h-screen bg-[#0A0A0A]">
@@ -73,7 +66,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="inline-block px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] md:text-sm font-semibold mb-6"
+            className="inline-block px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-[10px] md:text-sm font-fira font-semibold mb-6"
           >
             About OMYTECH
           </motion.div>
@@ -82,7 +75,7 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-2xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+            className="text-3xl md:text-5xl lg:text-6xl font-glacial font-bold mb-6 leading-tight"
           >
             <span className="block bg-gradient-to-r from-white via-gray-100 to-gray-300 bg-clip-text text-transparent pb-2">
               Building the Future
@@ -96,49 +89,28 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-xs md:text-base lg:text-lg text-gray-400 max-w-3xl mx-auto font-light mb-12"
-            style={{ lineHeight: '2', overflow: 'visible' }}
+            className="text-sm md:text-base lg:text-lg text-gray-400 max-w-3xl mx-auto font-fira font-normal mb-8 leading-relaxed"
           >
             We are a collective of engineers, designers, and strategists dedicated to
             transforming ambitious ideas into powerful digital realities. Based in Nairobi,
             serving the world.
           </motion.p>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
-          >
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center">
-                <div
-                  className="text-lg md:text-3xl font-bold mb-2"
-                  style={{ color: stat.color }}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-[10px] md:text-sm text-gray-500 font-medium">{stat.label}</div>
-              </div>
-            ))}
-          </motion.div>
         </div>
       </section>
 
       {/* Mission Section */}
-      <section className="relative px-6 py-20">
+      <section className="relative px-6 py-16">
         <div className="max-w-5xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white/[0.02] border border-white/10 rounded-3xl p-12 backdrop-blur-sm text-center"
+            className="bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-12 backdrop-blur-sm text-center"
           >
-            <h2 className="text-lg md:text-3xl font-bold text-white mb-6">
+            <h2 className="text-2xl md:text-4xl font-glacial font-bold text-white mb-6">
               Our Mission
             </h2>
-            <p className="text-xs md:text-base lg:text-lg text-gray-300 leading-relaxed max-w-3xl mx-auto" style={{ lineHeight: '1.8', overflow: 'visible' }}>
+            <p className="text-sm md:text-base lg:text-lg font-fira text-gray-300 leading-relaxed max-w-3xl mx-auto">
               To empower Kenyan and global businesses through innovative, secure, and
               scalable technology solutions that drive growth and create lasting impact.
             </p>
@@ -147,7 +119,7 @@ export default function AboutPage() {
       </section>
 
       {/* Core Values Section */}
-      <section className="relative px-6 py-20">
+      <section className="relative px-6 py-16">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -155,10 +127,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-2xl md:text-5xl font-glacial font-bold text-white mb-4">
               Our Core Values
             </h2>
-            <p className="text-xs md:text-base lg:text-lg" style={{ lineHeight: '1.8', overflow: 'visible' }}>
+            <p className="text-sm md:text-base text-gray-400 font-fira">
               The principles that guide everything we do
             </p>
           </motion.div>
@@ -183,11 +155,11 @@ export default function AboutPage() {
                   {React.cloneElement(value.icon, { className: "w-7 h-7" })}
                 </div>
 
-                <h3 className="text-base md:text-xl font-bold text-white mb-3">
+                <h3 className="text-lg md:text-xl font-glacial font-bold text-white mb-3">
                   {value.title}
                 </h3>
 
-                <p className="text-xs md:text-base text-gray-400 leading-relaxed" style={{ lineHeight: '1.8', overflow: 'visible' }}>
+                <p className="text-sm md:text-base font-fira text-gray-400 leading-relaxed">
                   {value.description}
                 </p>
               </motion.div>
@@ -197,7 +169,7 @@ export default function AboutPage() {
       </section>
 
       {/* Team Section */}
-      <section className="relative px-6 py-20">
+      <section className="relative px-6 py-16">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -205,10 +177,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-2xl md:text-5xl font-bold text-white mb-4">
+            <h2 className="text-2xl md:text-5xl font-glacial font-bold text-white mb-4">
               Meet Our Team
             </h2>
-            <p className="text-xs md:text-base lg:text-lg" style={{ lineHeight: '1.8', overflow: 'visible' }}>
+            <p className="text-sm md:text-base text-gray-400 font-fira">
               Talented individuals passionate about technology
             </p>
           </motion.div>
@@ -217,28 +189,28 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="bg-white/[0.02] border border-white/10 rounded-3xl p-12 backdrop-blur-sm text-center"
+            className="bg-white/[0.02] border border-white/10 rounded-3xl p-8 sm:p-12 backdrop-blur-sm text-center"
           >
             <div className="flex justify-center -space-x-4 mb-6">
               {[1, 2, 3, 4, 5].map((i) => (
                 <div
                   key={i}
-                  className="w-16 h-16 rounded-full border-4 border-[#0A0A0A]"
+                  className="w-14 h-14 sm:w-16 sm:h-16 rounded-full border-4 border-[#0A0A0A]"
                   style={{
                     background: `linear-gradient(135deg, ${['#3b82f6', '#10b981', '#f59e0b', '#06b6d4', '#ec4899'][i - 1]} 0%, ${['#1e40af', '#059669', '#d97706', '#0891b2', '#be185d'][i - 1]} 100%)`
                   }}
                 />
               ))}
             </div>
-            <h3 className="text-lg md:text-2xl font-bold text-white mb-3">
+            <h3 className="text-xl md:text-2xl font-glacial font-bold text-white mb-3">
               15+ Talented Professionals
             </h3>
-            <p className="text-xs md:text-base text-gray-400 mb-6" style={{ lineHeight: '1.8', overflow: 'visible' }}>
+            <p className="text-sm md:text-base font-fira text-gray-400 mb-6 leading-relaxed">
               Engineers, designers, and strategists working together to create exceptional digital experiences
             </p>
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-semibold transition-colors"
+              className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 font-glacial font-bold transition-colors"
             >
               Join Our Team
               <ArrowIcon className="w-5 h-5" />
@@ -254,23 +226,23 @@ export default function AboutPage() {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="relative bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-white/10 rounded-3xl p-12 text-center backdrop-blur-sm overflow-hidden"
+            className="relative bg-gradient-to-br from-blue-500/10 to-cyan-500/10 border border-white/10 rounded-3xl p-8 sm:p-12 text-center backdrop-blur-sm overflow-hidden"
           >
             <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:32px_32px]" />
 
             <div className="relative z-10">
-              <h2 className="text-xl md:text-4xl font-bold text-white mb-4">
+              <h2 className="text-2xl md:text-4xl font-glacial font-bold text-white mb-4">
                 Ready to Work Together?
               </h2>
-              <p className="text-gray-400 mb-8 text-xs md:text-base lg:text-lg" style={{ lineHeight: '1.8', overflow: 'visible' }}>
+              <p className="text-gray-400 mb-8 text-sm md:text-base font-fira leading-relaxed">
                 Let's discuss how we can help transform your business with technology
               </p>
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 px-8 py-4 bg-white text-black text-sm md:text-base font-semibold rounded-full hover:scale-105 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-white text-black text-sm md:text-base font-glacial font-bold rounded-xl hover:scale-105 transition-all duration-300"
               >
                 Get Started
-                <ArrowIcon className="w-5 h-5" />
+                <ArrowIcon className="w-5 h-5 text-blue-600" />
               </Link>
             </div>
           </motion.div>

@@ -50,30 +50,30 @@ export default function ProjectsPortfolio({ className = "pt-28" }) {
             className="group block w-full bg-white/[0.02] border border-white/10 rounded-2xl sm:rounded-3xl overflow-hidden hover:border-white/25 transition-all duration-500 hover:shadow-[0_0_50px_rgba(0,114,206,0.12)]"
           >
             {/* Project Image Container */}
-            <div className="relative w-full h-[320px] sm:h-[460px] md:h-[560px] lg:h-[650px] overflow-hidden bg-white/5">
+            <div className="relative w-full aspect-[4/3] sm:aspect-auto sm:h-[460px] md:h-[560px] lg:h-[650px] overflow-hidden bg-white/5">
               <Image
                 src={project.image}
                 alt={project.title}
                 fill
                 className="object-cover object-top transition-transform duration-700 ease-out group-hover:scale-[1.02]"
-                sizes="100vw"
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 1200px"
                 priority={index === 0}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/20 to-transparent opacity-70 group-hover:opacity-40 transition-opacity duration-500" />
             </div>
 
             {/* Card Info Footer */}
-            <div className="p-6 sm:p-8 md:p-10 flex items-center justify-between gap-4 border-t border-white/5 bg-[#0A0A0A]/90 backdrop-blur-md">
+            <div className="p-4 sm:p-8 md:p-10 flex items-center justify-between gap-3 border-t border-white/5 bg-[#0A0A0A]/90 backdrop-blur-md">
               <div>
-                <span className="inline-block text-[11px] sm:text-xs font-fira font-semibold uppercase tracking-wider text-cyan-400 mb-1">
+                <span className="inline-block text-[10px] sm:text-xs font-fira font-semibold uppercase tracking-wider text-cyan-400 mb-0.5 sm:mb-1">
                   {project.category}
                 </span>
-                <h3 className="text-xl sm:text-3xl md:text-4xl font-glacial font-bold text-white group-hover:text-cyan-400 transition-colors">
+                <h3 className="text-lg sm:text-3xl md:text-4xl font-glacial font-bold text-white group-hover:text-cyan-400 transition-colors">
                   {project.title}
                 </h3>
               </div>
-              <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 group-hover:text-white group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all duration-300 flex-shrink-0">
-                <ArrowUpRight className="w-6 h-6 sm:w-7 sm:h-7 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+              <div className="w-10 h-10 sm:w-14 sm:h-14 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-gray-300 group-hover:text-white group-hover:bg-cyan-500/20 group-hover:border-cyan-500/40 transition-all duration-300 flex-shrink-0">
+                <ArrowUpRight className="w-5 h-5 sm:w-7 sm:h-7 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
               </div>
             </div>
           </motion.a>
