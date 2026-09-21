@@ -26,7 +26,7 @@ export default function UserSidebar({
         />
       )}
       <aside
-        className={`fixed bottom-0 left-0 top-[108px] z-40 flex w-72 flex-col border-r border-[#dce5ef] bg-white px-5 py-6 transition-transform lg:sticky lg:top-0 lg:z-10 lg:h-[calc(100vh-80px)] lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}
+        className={`fixed bottom-0 left-0 top-[108px] z-40 flex w-72 flex-col overflow-y-auto overscroll-contain border-r border-[#dce5ef] bg-white px-5 py-6 transition-transform [scrollbar-width:thin] lg:sticky lg:top-0 lg:z-10 lg:h-[calc(100vh-80px)] lg:translate-x-0 ${open ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex items-center justify-between lg:hidden">
           <span className="text-sm font-bold">Client workspace</span>
