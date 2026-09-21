@@ -35,11 +35,19 @@ const solutionPaths = [
     tags: ["Automation", "Custom software", "Integrations"],
   },
   {
+    title: "Build education and care systems",
+    description:
+      "Create digital platforms for schools, training organisations, clinics, and healthcare teams that improve service delivery, access, visibility, and day-to-day operations.",
+    icon: FiBarChart2,
+    accent: "03",
+    tags: ["School systems", "Clinic operations", "Workflow design"],
+  },
+  {
     title: "Reach more customers",
     description:
       "Build a stronger digital presence with experiences and campaigns that make your brand easier to discover and trust.",
     icon: FiBarChart2,
-    accent: "03",
+    accent: "04",
     tags: ["Web presence", "Digital marketing", "Social media"],
   },
   {
@@ -47,7 +55,7 @@ const solutionPaths = [
     description:
       "Improve the digital foundation behind your growth with reliable platforms, insights, support, and continuous improvement.",
     icon: FiCloud,
-    accent: "04",
+    accent: "05",
     tags: ["Cloud support", "Analytics", "Optimisation"],
   },
 ];

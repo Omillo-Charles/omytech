@@ -11,6 +11,7 @@ import {
   FiShoppingBag,
   FiSmartphone,
   FiTrendingUp,
+  FiUsers,
 } from "react-icons/fi";
 import { colors } from "../../config/colors";
 
@@ -55,6 +56,22 @@ const services = [
   },
   {
     number: "05",
+    title: "School & Learning Systems",
+    description:
+      "Comprehensive education platforms for schools, colleges, and training centres that need structured learning, student management, progress tracking, and administration.",
+    icon: FiMonitor,
+    tags: ["Student portals", "Attendance", "Assessments"],
+  },
+  {
+    number: "06",
+    title: "Healthcare & Clinic Management",
+    description:
+      "Digital systems for clinics and care facilities that simplify patient records, appointments, billing, staff coordination, and service delivery across operations.",
+    icon: FiUsers,
+    tags: ["Patient workflows", "Records", "Operations"],
+  },
+  {
+    number: "07",
     title: "Social Media Management",
     description:
       "Consistent, thoughtful social media presence that keeps your brand visible, relevant, and connected to its audience.",
@@ -62,7 +79,7 @@ const services = [
     tags: ["Content planning", "Community", "Brand voice"],
   },
   {
-    number: "06",
+    number: "08",
     title: "Digital Marketing",
     description:
       "Practical digital campaigns built around your goals, from stronger discoverability to qualified leads and measurable growth.",
@@ -70,7 +87,7 @@ const services = [
     tags: ["Campaigns", "SEO", "Performance"],
   },
   {
-    number: "07",
+    number: "09",
     title: "E-commerce Solutions",
     description:
       "Reliable online stores with smooth customer journeys, secure payments, and the tools you need to manage your growth.",
@@ -78,7 +95,7 @@ const services = [
     tags: ["Online stores", "Payments", "Product journeys"],
   },
   {
-    number: "08",
+    number: "10",
     title: "Cloud & Digital Support",
     description:
       "Ongoing technical care, hosting guidance, and improvements that keep your digital products dependable after launch.",

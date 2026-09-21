@@ -70,34 +70,6 @@ const projects = [
     ],
   },
   {
-    name: "New Testament Church of God Kenya",
-    type: "Church platform",
-    location: "Kenya",
-    url: "https://ntcogk.vercel.app",
-    image: "/assets/portfolio/ntcogk.webp",
-    tone: "bg-[#f0edff] text-[#6250a7]",
-    icon: FiHeart,
-    description:
-      "A welcoming church website that helps the New Testament Church of God Kenya share its identity, connect with its community, and communicate its mission online.",
-    features: [
-      "Church information",
-      "Community connection",
-      "Mission-led content",
-    ],
-  },
-  {
-    name: "NTCOGK Youth Explosion",
-    type: "Events & registration",
-    location: "Kenya",
-    url: "https://youthexplosion.vercel.app",
-    image: "/assets/portfolio/youthexplosion.webp",
-    tone: "bg-[#eaf9ee] text-[#26834b]",
-    icon: FiCalendar,
-    description:
-      "A dedicated event platform for Youth Explosion, bringing registration, payment flows, and event information together in one clear experience for attendees.",
-    features: ["Event registration", "Payment support", "Attendee experience"],
-  },
-  {
     name: "OMYTECH Kenya",
     type: "Digital solutions",
     location: "Nairobi, Kenya",
