@@ -33,8 +33,8 @@ export default function CtaSection() {
               aria-hidden="true"
             />
           </a>
-          </div>
         </div>
+      </div>
     </section>
   );
 }
