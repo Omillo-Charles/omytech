@@ -6,7 +6,8 @@ import { glacialIndifference, mulish } from "../config/fonts";
 
 export const metadata: Metadata = {
   title: "OMYTECH Kenya",
-  description: "Web development, mobile app development, and digital solutions from OMYTECH Kenya.",
+  description:
+    "Web development, mobile app development, and digital solutions from OMYTECH Kenya.",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {

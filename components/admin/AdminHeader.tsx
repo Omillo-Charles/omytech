@@ -1,23 +1,25 @@
 import { FiMenu, FiPlus, FiSearch } from "react-icons/fi";
-import type { DashboardView } from "./dashboardData";
+import type { AdminView } from "./adminData";
 
-type DashboardHeaderProps = {
-  activeView: DashboardView;
+type AdminHeaderProps = {
+  activeView: AdminView;
   onOpenMenu: () => void;
+  onNewProject: () => void;
 };
 
-export default function DashboardHeader({
+export default function AdminHeader({
   activeView,
   onOpenMenu,
-}: DashboardHeaderProps) {
+  onNewProject,
+}: AdminHeaderProps) {
   return (
     <header className="flex items-center justify-between gap-4">
       <div className="flex items-center gap-3">
         <button
           type="button"
-          aria-label="Open dashboard menu"
+          aria-label="Open admin menu"
           onClick={onOpenMenu}
-          className="p-2 text-[#536579] hover:text-[#071a2d] lg:hidden"
+          className="p-2 text-[#536579] lg:hidden"
         >
           <FiMenu className="h-5 w-5" />
         </button>
@@ -33,20 +35,22 @@ export default function DashboardHeader({
           </h1>
         </div>
       </div>
-      <div className="flex items-center gap-2 sm:gap-4">
+      <div className="flex items-center gap-2">
         <button
           type="button"
-          aria-label="Search workspace"
-          className="hidden p-2 text-[#536579] hover:text-[#071a2d] sm:block"
+          aria-label="Search admin workspace"
+          className="hidden p-2 text-[#536579] sm:block"
         >
           <FiSearch className="h-5 w-5" />
         </button>
-        <a
-          href="/quote"
-          className="hidden items-center gap-2 bg-[#071a2d] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#12385b] sm:inline-flex"
+        <button
+          type="button"
+          onClick={onNewProject}
+          className="inline-flex items-center gap-2 bg-[#071a2d] px-4 py-2.5 text-sm font-semibold text-white hover:bg-[#12385b]"
         >
-          <FiPlus className="h-4 w-4" /> New request
-        </a>
+          <FiPlus className="h-4 w-4" />
+          <span className="hidden sm:inline">New project</span>
+        </button>
       </div>
     </header>
   );

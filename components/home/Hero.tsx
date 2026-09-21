@@ -1,11 +1,17 @@
-import Image from 'next/image';
-import { FiArrowRight, FiCheckCircle, FiCode, FiMonitor, FiSmartphone } from 'react-icons/fi';
-import { colors } from '../../config/colors';
+import Image from "next/image";
+import {
+  FiArrowRight,
+  FiCheckCircle,
+  FiCode,
+  FiMonitor,
+  FiSmartphone,
+} from "react-icons/fi";
+import { colors } from "../../config/colors";
 
 const highlights = [
-  { label: 'Web Development', icon: FiMonitor },
-  { label: 'Mobile Apps', icon: FiSmartphone },
-  { label: 'Custom Solutions', icon: FiCode },
+  { label: "Web Development", icon: FiMonitor },
+  { label: "Mobile Apps", icon: FiSmartphone },
+  { label: "Custom Solutions", icon: FiCode },
 ];
 
 export default function Hero() {
@@ -28,7 +34,7 @@ export default function Hero() {
           <h1
             className="max-w-xl text-[2.6rem] font-black leading-[1.14] sm:text-5xl lg:text-6xl"
             style={{
-              fontFamily: 'var(--font-glacial-indifference), sans-serif',
+              fontFamily: "var(--font-glacial-indifference), sans-serif",
             }}
           >
             We build digital experiences that move businesses forward.
@@ -36,17 +42,22 @@ export default function Hero() {
 
           <p
             className="mt-5 max-w-xl text-base leading-7 text-slate-200 sm:mt-6 sm:text-lg sm:leading-8"
-            style={{ fontFamily: 'var(--font-mulish), sans-serif' }}
+            style={{ fontFamily: "var(--font-mulish), sans-serif" }}
           >
-            OMYTECH Kenya delivers web development, mobile applications, and custom tech solutions that
-            help organizations innovate, scale, and compete with confidence.
+            OMYTECH Kenya delivers web development, mobile applications, and
+            custom tech solutions that help organizations innovate, scale, and
+            compete with confidence.
           </p>
 
           <div className="mt-9 flex w-full flex-col gap-3 sm:mt-10 sm:w-auto sm:flex-row sm:gap-4">
             <a
               href="/quote"
               className="inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-semibold shadow-[0_16px_32px_rgba(11,120,183,0.35)] transition hover:brightness-110"
-              style={{ background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.accent} 100%)`, color: colors.white, borderRadius: 0 }}
+              style={{
+                background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.accent} 100%)`,
+                color: colors.white,
+                borderRadius: 0,
+              }}
             >
               Get a Quote
               <FiArrowRight className="h-4 w-4" aria-hidden="true" />
@@ -66,9 +77,13 @@ export default function Hero() {
               <div
                 key={label}
                 className="flex items-center gap-2 rounded-full border border-white/10 bg-[#0d2340]/65 px-3 py-2 text-sm text-slate-100 backdrop-blur-sm"
-                style={{ fontFamily: 'var(--font-mulish), sans-serif' }}
+                style={{ fontFamily: "var(--font-mulish), sans-serif" }}
               >
-                <Icon className="h-4 w-4" style={{ color: colors.primaryLight }} aria-hidden="true" />
+                <Icon
+                  className="h-4 w-4"
+                  style={{ color: colors.primaryLight }}
+                  aria-hidden="true"
+                />
                 <span>{label}</span>
               </div>
             ))}

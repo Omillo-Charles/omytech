@@ -1,5 +1,5 @@
-import { FiArrowRight } from 'react-icons/fi';
-import { colors } from '../../config/colors';
+import { FiArrowRight } from "react-icons/fi";
+import { colors } from "../../config/colors";
 
 export default function CtaSection() {
   return (
@@ -16,7 +16,7 @@ export default function CtaSection() {
             <h2
               className="mt-3 text-3xl font-black leading-tight sm:text-4xl"
               style={{
-                fontFamily: 'var(--font-glacial-indifference), sans-serif',
+                fontFamily: "var(--font-glacial-indifference), sans-serif",
               }}
             >
               Ready to turn your next idea into a digital success story?
