@@ -26,13 +26,13 @@ const navItems = [
 ];
 
 const mobilePrimaryLinks = [
+  { label: "Home", icon: FiHome },
   { label: "Services", icon: FiGrid },
-  { label: "Solutions", icon: FiZap },
   { label: "Contact", icon: FiMail },
 ];
 
 const mobileMoreLinks = [
-  { label: "Home", icon: FiHome },
+  { label: "Solutions", icon: FiZap },
   { label: "Portfolio", icon: FiFolder },
   { label: "About", icon: FiInfo },
 ];
@@ -114,10 +114,10 @@ export default function Navbar() {
           <div className="flex items-stretch justify-center gap-2 px-4">
             {mobilePrimaryLinks.map(({ label, icon: Icon }) => {
               const href =
-                label === "Services"
-                  ? "/services"
-                  : label === "Solutions"
-                    ? "/solutions"
+                label === "Home"
+                  ? "/"
+                  : label === "Services"
+                    ? "/services"
                     : "/contact";
               return (
                 <a
