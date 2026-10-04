@@ -1,12 +1,15 @@
 "use client";
 
 import { useState } from "react";
+import ContactsPanel from "./ContactsPanel";
 import DashboardHeader from "./DashboardHeader";
 import OverviewContent from "./OverviewContent";
+import PaymentsPanel from "./PaymentsPanel";
 import PlaceholderView from "./PlaceholderView";
 import type { DashboardView } from "./dashboardData";
 import UserSidebar from "./UserSidebar";
 import UserSettings from "./UserSettings";
+import QuotesPanel from "./QuotesPanel";
 
 export default function UserDashboard() {
   const [activeView, setActiveView] = useState<DashboardView>("Overview");
@@ -34,6 +37,12 @@ export default function UserDashboard() {
           />
           {activeView === "Overview" ? (
             <OverviewContent />
+          ) : activeView === "Payments" ? (
+            <PaymentsPanel />
+          ) : activeView === "Quotes" ? (
+            <QuotesPanel />
+          ) : activeView === "Contacts" ? (
+            <ContactsPanel />
           ) : activeView === "Settings" ? (
             <UserSettings />
           ) : (

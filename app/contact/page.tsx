@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import {
-  FiArrowRight,
   FiClock,
   FiMail,
   FiMapPin,
   FiPhone,
 } from "react-icons/fi";
+import ContactForm from "../../components/contact/ContactForm";
 import { colors } from "../../config/colors";
 
 export const metadata: Metadata = {
@@ -87,92 +87,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="border border-[#cfe0ee] bg-white p-6 shadow-[0_20px_55px_rgba(7,26,45,0.08)] sm:p-8 lg:p-10">
-            <div className="mb-7 border-b border-[#e6eef5] pb-5">
-              <p
-                className="text-xs font-semibold uppercase"
-                style={{ color: colors.primary }}
-              >
-                Project enquiry
-              </p>
-              <h2
-                className="mt-3 text-2xl font-black sm:text-3xl"
-                style={{
-                  fontFamily: "var(--font-glacial-indifference), sans-serif",
-                }}
-              >
-                Tell us a little about what you need.
-              </h2>
-            </div>
-
-            <form
-              action="mailto:info@omytechkenya.co.ke"
-              method="post"
-              encType="text/plain"
-              className="grid gap-5"
-            >
-              <div className="grid gap-5 sm:grid-cols-2">
-                <label className="grid gap-2 text-sm font-semibold">
-                  Your name
-                  <input
-                    name="name"
-                    type="text"
-                    required
-                    placeholder="Jane Doe"
-                    className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none transition focus:border-[#0b78b7]"
-                  />
-                </label>
-                <label className="grid gap-2 text-sm font-semibold">
-                  Email address
-                  <input
-                    name="email"
-                    type="email"
-                    required
-                    placeholder="jane@company.com"
-                    className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none transition focus:border-[#0b78b7]"
-                  />
-                </label>
-              </div>
-
-              <label className="grid gap-2 text-sm font-semibold">
-                What can we help with?
-                <select
-                  name="service"
-                  defaultValue=""
-                  className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none transition focus:border-[#0b78b7]"
-                >
-                  <option value="" disabled>
-                    Select a service
-                  </option>
-                  <option>Web development</option>
-                  <option>Mobile app development</option>
-                  <option>UI/UX design</option>
-                  <option>Custom software</option>
-                  <option>Digital marketing or social media</option>
-                  <option>Something else</option>
-                </select>
-              </label>
-
-              <label className="grid gap-2 text-sm font-semibold">
-                Tell us about the project
-                <textarea
-                  name="message"
-                  required
-                  rows={5}
-                  placeholder="What are you trying to build, improve, or solve?"
-                  className="resize-y border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none transition focus:border-[#0b78b7]"
-                />
-              </label>
-
-              <button
-                type="submit"
-                className="inline-flex w-fit items-center gap-3 bg-[#071a2d] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#12385b]"
-              >
-                Send enquiry
-                <FiArrowRight className="h-4 w-4" aria-hidden="true" />
-              </button>
-            </form>
-          </div>
+          <ContactForm />
         </div>
       </section>
 

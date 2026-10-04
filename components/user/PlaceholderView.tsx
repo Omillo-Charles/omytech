@@ -6,6 +6,7 @@ import {
     FiFileText,
     FiFolder,
     FiGrid,
+    FiMail,
     FiSettings,
     FiShare2,
 } from "react-icons/fi";
@@ -33,17 +34,23 @@ const content: Record<
         detail:
             "Track new project enquiries, approve proposals, and keep requested services organised.",
     },
-    Invoices: {
+    Payments: {
         icon: FiCreditCard,
         title: "Stay on top of payments.",
         detail:
-            "View invoices, payment status, receipts, and upcoming payment dates.",
+            "View completed payments, manage upcoming billing, and take action on your outstanding balances.",
     },
     Files: {
         icon: FiFolder,
         title: "Your shared files.",
         detail:
             "Access project briefs, design files, deliverables, and documents shared by your team.",
+    },
+    Contacts: {
+        icon: FiMail,
+        title: "Keep your key contacts close.",
+        detail:
+            "Reach the right people quickly, whether it is your project lead, support desk, or sales contact.",
     },
     Referrals: {
         icon: FiShare2,

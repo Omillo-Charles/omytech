@@ -1,29 +1,133 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FiCheck, FiLock, FiSave, FiShield, FiTrash2 } from "react-icons/fi";
+import { useAuth } from "../../contexts/AuthContext";
+import { useModal } from "../../contexts/ModalContext";
+import { useToast } from "../../contexts/ToastContext";
+import { userApi } from "../../config/api";
 
 export default function UserSettings() {
+  const { user, accessToken } = useAuth();
+  const { showConfirmation } = useModal();
+  const { success, error } = useToast();
   const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const [profileError, setProfileError] = useState("");
+  const [profileForm, setProfileForm] = useState({
+    name: "",
+    email: "",
+    phone: "",
+    company: "",
+  });
   const [emailUpdates, setEmailUpdates] = useState(true);
   const [projectUpdates, setProjectUpdates] = useState(true);
   const [passwordFormOpen, setPasswordFormOpen] = useState(false);
   const [passwordSaved, setPasswordSaved] = useState(false);
-  const [deleteConfirmationOpen, setDeleteConfirmationOpen] = useState(false);
-  const [deleteText, setDeleteText] = useState("");
-  const [deletionRequested, setDeletionRequested] = useState(false);
+  const [passwordError, setPasswordError] = useState("");
+  const [passwordForm, setPasswordForm] = useState({
+    currentPassword: "",
+    newPassword: "",
+    confirmPassword: "",
+  });
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  useEffect(() => {
+    if (!user) {
+      return;
+    }
+
+    setProfileForm({
+      name: user.name ?? "",
+      email: user.email ?? "",
+      phone: "",
+      company: "",
+    });
+  }, [user]);
+
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setSaved(true);
-    window.setTimeout(() => setSaved(false), 2500);
+
+    if (!user || !accessToken) {
+      setProfileError("You need to be signed in to update your profile.");
+      return;
+    }
+
+    try {
+      setSaving(true);
+      setProfileError("");
+
+      const trimmedName = profileForm.name.trim();
+      const trimmedEmail = profileForm.email.trim();
+
+      const response = await userApi.updateProfile(
+        {
+          name: trimmedName,
+          email: trimmedEmail,
+        },
+        accessToken
+      );
+
+      if (response?.data?.user) {
+        setSaved(true);
+        window.setTimeout(() => setSaved(false), 2500);
+      }
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Unable to save your profile right now.";
+      setProfileError(message);
+    } finally {
+      setSaving(false);
+    }
   };
 
-  const handlePasswordSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handlePasswordSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    setPasswordSaved(true);
-    setPasswordFormOpen(false);
-    window.setTimeout(() => setPasswordSaved(false), 2500);
+
+    if (!accessToken) {
+      setPasswordError("You need to be signed in to change your password.");
+      return;
+    }
+
+    if (passwordForm.newPassword !== passwordForm.confirmPassword) {
+      setPasswordError("The new passwords do not match.");
+      return;
+    }
+
+    try {
+      setPasswordError("");
+      await userApi.changePassword(
+        {
+          currentPassword: passwordForm.currentPassword,
+          newPassword: passwordForm.newPassword,
+        },
+        accessToken
+      );
+
+      setPasswordSaved(true);
+      setPasswordFormOpen(false);
+      setPasswordForm({ currentPassword: "", newPassword: "", confirmPassword: "" });
+      window.setTimeout(() => setPasswordSaved(false), 2500);
+    } catch (error) {
+      const message =
+        error instanceof Error ? error.message : "Unable to update your password right now.";
+      setPasswordError(message);
+    }
+  };
+
+  const handleDeleteAccount = async () => {
+    if (!accessToken) {
+      error("Authentication required", "Please sign in again to continue.");
+      return;
+    }
+
+    try {
+      await userApi.deleteAccount(accessToken);
+      success("Account deleted", "Your account has been removed successfully.");
+    } catch (deleteError) {
+      const message =
+        deleteError instanceof Error ? deleteError.message : "Unable to delete your account right now.";
+      error("Delete failed", message);
+    }
   };
 
   return (
@@ -50,18 +154,25 @@ export default function UserSettings() {
         <form onSubmit={handleSubmit} className="mt-6 grid gap-5">
           <div className="grid gap-5 sm:grid-cols-2">
             <label className="grid gap-2 text-sm font-semibold">
-              First name
+              Full name
               <input
-                name="firstName"
-                defaultValue="Jane"
+                name="name"
+                value={profileForm.name}
+                onChange={(event) =>
+                  setProfileForm((current) => ({ ...current, name: event.target.value }))
+                }
                 className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none focus:border-[#0b78b7]"
               />
             </label>
             <label className="grid gap-2 text-sm font-semibold">
-              Last name
+              Phone number
               <input
-                name="lastName"
-                defaultValue="Doe"
+                name="phone"
+                type="tel"
+                value={profileForm.phone}
+                onChange={(event) =>
+                  setProfileForm((current) => ({ ...current, phone: event.target.value }))
+                }
                 className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none focus:border-[#0b78b7]"
               />
             </label>
@@ -72,28 +183,27 @@ export default function UserSettings() {
               <input
                 name="email"
                 type="email"
-                defaultValue="jane@company.com"
-                className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none focus:border-[#0b78b7]"
+                value={profileForm.email}
+                disabled
+                className="border border-[#cfe0ee] bg-[#f3f7fb] px-4 py-3.5 font-normal text-[#6b7d90] outline-none"
               />
             </label>
             <label className="grid gap-2 text-sm font-semibold">
-              Phone number
+              Company or organisation
               <input
-                name="phone"
-                type="tel"
-                defaultValue="+254 745 511 354"
+                name="company"
+                value={profileForm.company}
+                onChange={(event) =>
+                  setProfileForm((current) => ({ ...current, company: event.target.value }))
+                }
                 className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none focus:border-[#0b78b7]"
               />
             </label>
           </div>
-          <label className="grid gap-2 text-sm font-semibold">
-            Company or organisation
-            <input
-              name="company"
-              defaultValue="Your company"
-              className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none focus:border-[#0b78b7]"
-            />
-          </label>
+
+          {profileError && (
+            <p className="text-sm font-medium text-[#9b3d3d]">{profileError}</p>
+          )}
 
           <div className="flex flex-col gap-4 border-t border-[#e6eef5] pt-5 sm:flex-row sm:items-center sm:justify-between">
             <p className="text-xs text-[#8a9aaa]">
@@ -101,14 +211,15 @@ export default function UserSettings() {
             </p>
             <button
               type="submit"
-              className="inline-flex w-fit items-center gap-2 bg-[#071a2d] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#12385b]"
+              disabled={saving}
+              className="inline-flex w-fit items-center gap-2 bg-[#071a2d] px-5 py-3 text-sm font-semibold text-white transition hover:bg-[#12385b] disabled:cursor-not-allowed disabled:opacity-70"
             >
               {saved ? (
                 <FiCheck className="h-4 w-4" />
               ) : (
                 <FiSave className="h-4 w-4" />
               )}
-              {saved ? "Changes saved" : "Save changes"}
+              {saving ? "Saving..." : saved ? "Changes saved" : "Save changes"}
             </button>
           </div>
         </form>
@@ -187,6 +298,9 @@ export default function UserSettings() {
               <FiCheck className="h-4 w-4" /> Password updated
             </p>
           )}
+          {passwordError && (
+            <p className="mt-4 text-sm font-medium text-[#9b3d3d]">{passwordError}</p>
+          )}
           {passwordFormOpen && (
             <form
               onSubmit={handlePasswordSubmit}
@@ -197,6 +311,13 @@ export default function UserSettings() {
                 <input
                   type="password"
                   required
+                  value={passwordForm.currentPassword}
+                  onChange={(event) =>
+                    setPasswordForm((current) => ({
+                      ...current,
+                      currentPassword: event.target.value,
+                    }))
+                  }
                   className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3 font-normal outline-none focus:border-[#0b78b7]"
                 />
               </label>
@@ -206,6 +327,13 @@ export default function UserSettings() {
                   type="password"
                   required
                   minLength={8}
+                  value={passwordForm.newPassword}
+                  onChange={(event) =>
+                    setPasswordForm((current) => ({
+                      ...current,
+                      newPassword: event.target.value,
+                    }))
+                  }
                   className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3 font-normal outline-none focus:border-[#0b78b7]"
                 />
               </label>
@@ -215,6 +343,13 @@ export default function UserSettings() {
                   type="password"
                   required
                   minLength={8}
+                  value={passwordForm.confirmPassword}
+                  onChange={(event) =>
+                    setPasswordForm((current) => ({
+                      ...current,
+                      confirmPassword: event.target.value,
+                    }))
+                  }
                   className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3 font-normal outline-none focus:border-[#0b78b7]"
                 />
               </label>
@@ -240,45 +375,22 @@ export default function UserSettings() {
             </div>
             <button
               type="button"
-              onClick={() => setDeleteConfirmationOpen((open) => !open)}
+              onClick={() =>
+                showConfirmation({
+                  title: "Delete account?",
+                  description:
+                    "This action is permanent and removes your account access and workspace data.",
+                  confirmText: "Delete account",
+                  cancelText: "Cancel",
+                  variant: "danger",
+                  onConfirm: handleDeleteAccount,
+                })
+              }
               className="inline-flex w-fit items-center gap-2 border border-[#e3bcbc] px-4 py-2.5 text-sm font-semibold text-[#9b3d3d] hover:bg-[#fff5f5]"
             >
               <FiTrash2 className="h-4 w-4" /> Delete account
             </button>
           </div>
-          {deleteConfirmationOpen && !deletionRequested && (
-            <div className="mt-5 border border-[#e3bcbc] bg-[#fff8f8] p-5">
-              <p className="text-sm font-semibold text-[#7f3030]">
-                Are you sure you want to delete your account?
-              </p>
-              <p className="mt-2 text-xs leading-5 text-[#8a6b6b]">
-                Type <strong>DELETE</strong> below to confirm this permanent
-                action.
-              </p>
-              <input
-                value={deleteText}
-                onChange={(event) => setDeleteText(event.target.value)}
-                aria-label="Type DELETE to confirm account deletion"
-                className="mt-4 w-full border border-[#e3bcbc] bg-white px-4 py-3 text-sm outline-none focus:border-[#9b3d3d] sm:max-w-xs"
-                placeholder="DELETE"
-              />
-              <div>
-                <button
-                  type="button"
-                  disabled={deleteText !== "DELETE"}
-                  onClick={() => setDeletionRequested(true)}
-                  className="mt-4 inline-flex items-center gap-2 bg-[#9b3d3d] px-4 py-3 text-sm font-semibold text-white disabled:cursor-not-allowed disabled:opacity-40"
-                >
-                  Confirm deletion
-                </button>
-              </div>
-            </div>
-          )}
-          {deletionRequested && (
-            <p className="mt-4 text-sm font-semibold text-[#9b3d3d]">
-              Your deletion request has been recorded for account review.
-            </p>
-          )}
         </div>
       </section>
     </div>

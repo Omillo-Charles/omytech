@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Footer from "../components/ui/Footer";
 import Navbar from "../components/ui/Navbar";
+import { AuthProvider } from "../contexts/AuthContext";
+import { ModalProvider } from "../contexts/ModalContext";
+import { ToastProvider } from "../contexts/ToastContext";
 import { glacialIndifference, mulish } from "../config/fonts";
 
 export const metadata: Metadata = {
@@ -139,9 +142,15 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <Navbar />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <ToastProvider>
+            <ModalProvider>
+              <Navbar />
+              {children}
+              <Footer />
+            </ModalProvider>
+          </ToastProvider>
+        </AuthProvider>
       </body>
     </html>
   );

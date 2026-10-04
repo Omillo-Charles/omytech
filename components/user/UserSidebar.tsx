@@ -1,6 +1,9 @@
 "use client";
 
 import { FiChevronDown, FiLogOut, FiSettings, FiX } from "react-icons/fi";
+import { useAuth } from "../../contexts/AuthContext";
+import { useModal } from "../../contexts/ModalContext";
+import { useToast } from "../../contexts/ToastContext";
 import { navigation, type DashboardView } from "./dashboardData";
 
 type UserSidebarProps = {
@@ -16,6 +19,29 @@ export default function UserSidebar({
     onClose,
     onSelect,
 }: UserSidebarProps) {
+    const { user, logout, accessToken } = useAuth();
+    const { showConfirmation } = useModal();
+    const { success, error } = useToast();
+
+    const displayName = user?.name?.trim() || user?.email?.split("@")[0] || "User";
+    const initials = displayName
+        .split(" ")
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((part) => part[0]?.toUpperCase() ?? "")
+        .join("") || "U";
+
+    const handleLogout = async () => {
+        try {
+            await logout();
+            success("Logged out", "You have been signed out successfully.");
+        } catch (logoutError) {
+            const message =
+                logoutError instanceof Error ? logoutError.message : "Unable to log out right now.";
+            error("Logout failed", message);
+        }
+    };
+
     return (
         <>
             {open && (
@@ -42,13 +68,21 @@ export default function UserSidebar({
 
                 <div className="mt-8 border-b border-[#e6eef5] pb-6 lg:mt-0">
                     <div className="flex items-center gap-3">
-                        <div className="flex h-11 w-11 items-center justify-center bg-[#e8f6fc] text-lg font-bold text-[#0b78b7]">
-                            JD
-                        </div>
+                        {user?.image ? (
+                            <img
+                                src={user.image}
+                                alt={displayName}
+                                className="h-11 w-11 rounded-full object-cover"
+                            />
+                        ) : (
+                            <div className="flex h-11 w-11 items-center justify-center bg-[#e8f6fc] text-lg font-bold text-[#0b78b7]">
+                                {initials}
+                            </div>
+                        )}
                         <div className="min-w-0">
-                            <p className="truncate text-sm font-bold">Jane Doe</p>
+                            <p className="truncate text-sm font-bold">{displayName}</p>
                             <p className="truncate text-xs text-[#6b7d90]">
-                                Client workspace
+                                {user?.email || "Client workspace"}
                             </p>
                         </div>
                         <FiChevronDown
@@ -91,12 +125,22 @@ export default function UserSidebar({
                     >
                         <FiSettings className="h-4 w-4" /> Account settings
                     </button>
-                    <a
-                        href="/"
-                        className="flex items-center gap-3 px-3 py-3 text-sm font-semibold text-[#536579] hover:bg-[#f5f8fc] hover:text-[#071a2d]"
+                    <button
+                        type="button"
+                        onClick={() =>
+                            showConfirmation({
+                                title: "Leave workspace?",
+                                description: "You will be signed out of your dashboard session.",
+                                confirmText: "Leave workspace",
+                                cancelText: "Stay",
+                                variant: "danger",
+                                onConfirm: handleLogout,
+                            })
+                        }
+                        className="flex items-center gap-3 px-3 py-3 text-left text-sm font-semibold text-[#536579] hover:bg-[#f5f8fc] hover:text-[#071a2d]"
                     >
                         <FiLogOut className="h-4 w-4" /> Leave workspace
-                    </a>
+                    </button>
                 </div>
             </aside>
         </>

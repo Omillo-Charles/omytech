@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
@@ -15,6 +16,7 @@ import {
   FiStar,
 } from "react-icons/fi";
 import { colors } from "../../config/colors";
+import { useAuth } from "../../contexts/AuthContext";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -40,6 +42,8 @@ const mobileMoreLinks = [
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
+  const { isAuthenticated, user, getDashboardPath } = useAuth();
+  const profileHref = isAuthenticated ? getDashboardPath(user?.role ?? null) : "/auth";
   const isActive = (href: string) =>
     href === "/" ? pathname === href : pathname.startsWith(href);
 
@@ -89,14 +93,14 @@ export default function Navbar() {
           </a>
 
           <div className="flex items-center gap-2">
-            <a
-              href="/auth"
-              aria-label="Sign in or create an account"
-              aria-current={isActive("/auth") ? "page" : undefined}
-              className={`inline-flex h-10 w-10 items-center justify-center transition-colors duration-200 hover:text-[#9ad9ff] ${isActive("/auth") ? "text-[#9ad9ff]" : "text-white"}`}
+            <Link
+              href={profileHref}
+              aria-label={isAuthenticated ? "Open your dashboard" : "Sign in or create an account"}
+              aria-current={isActive(profileHref) ? "page" : undefined}
+              className={`inline-flex h-10 w-10 items-center justify-center transition-colors duration-200 hover:text-[#9ad9ff] ${isActive(profileHref) ? "text-[#9ad9ff]" : "text-white"}`}
             >
               <FiUser className="h-4 w-4" aria-hidden="true" />
-            </a>
+            </Link>
 
             <button
               type="button"
@@ -235,14 +239,14 @@ export default function Navbar() {
           </div>
 
           <div className="flex items-center gap-3">
-            <a
-              href="/auth"
-              aria-label="Sign in or create an account"
-              aria-current={isActive("/auth") ? "page" : undefined}
-              className={`inline-flex h-11 w-11 items-center justify-center transition-colors duration-200 hover:text-[#9ad9ff] ${isActive("/auth") ? "text-[#9ad9ff]" : "text-white"}`}
+            <Link
+              href={profileHref}
+              aria-label={isAuthenticated ? "Open your dashboard" : "Sign in or create an account"}
+              aria-current={isActive(profileHref) ? "page" : undefined}
+              className={`inline-flex h-11 w-11 items-center justify-center transition-colors duration-200 hover:text-[#9ad9ff] ${isActive(profileHref) ? "text-[#9ad9ff]" : "text-white"}`}
             >
               <FiUser className="h-5 w-5" aria-hidden="true" />
-            </a>
+            </Link>
 
             <a
               href="/quote"

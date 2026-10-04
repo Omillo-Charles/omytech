@@ -5,6 +5,7 @@ import {
   FiFileText,
   FiFolder,
   FiGrid,
+  FiMail,
   FiShare2,
 } from "react-icons/fi";
 
@@ -12,8 +13,9 @@ export type DashboardView =
   | "Overview"
   | "Projects"
   | "Quotes"
-  | "Invoices"
+  | "Payments"
   | "Files"
+  | "Contacts"
   | "Referrals"
   | "Settings";
 
@@ -21,8 +23,9 @@ export const navigation: { label: DashboardView; icon: typeof FiGrid }[] = [
   { label: "Overview", icon: FiGrid },
   { label: "Projects", icon: FiBriefcase },
   { label: "Quotes", icon: FiFileText },
-  { label: "Invoices", icon: FiCreditCard },
+  { label: "Payments", icon: FiCreditCard },
   { label: "Files", icon: FiFolder },
+  { label: "Contacts", icon: FiMail },
   { label: "Referrals", icon: FiShare2 },
 ];
 

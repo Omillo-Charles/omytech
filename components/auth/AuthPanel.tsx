@@ -1,17 +1,183 @@
 "use client";
 
-import { useState } from "react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useState, type ChangeEvent, type FormEvent } from "react";
 import { FaGoogle } from "react-icons/fa6";
 import { FiArrowRight, FiEye, FiEyeOff, FiLock } from "react-icons/fi";
+import { API_BASE_URL, authApi } from "../../config/api";
 import { colors } from "../../config/colors";
+import { useAuth } from "../../contexts/AuthContext";
+import { useToast } from "../../contexts/ToastContext";
 
 type AuthMode = "sign-in" | "sign-up";
 
+type AuthFieldName = "name" | "email" | "password" | "confirmPassword";
+type AuthErrors = Partial<Record<AuthFieldName, string>>;
+
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const initialForm = {
+  name: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
+const validateField = (field: AuthFieldName, value: string, mode: AuthMode) => {
+  const trimmed = value.trim();
+
+  switch (field) {
+    case "name": {
+      if (mode === "sign-in") return "";
+      if (!trimmed) return "Full name is required.";
+      if (trimmed.length < 2) return "Name must be at least 2 characters.";
+      if (trimmed.length > 100) return "Name must be under 100 characters.";
+      return "";
+    }
+    case "email": {
+      if (!trimmed) return "Email is required.";
+      if (!emailPattern.test(trimmed)) return "Please enter a valid email address.";
+      return "";
+    }
+    case "password": {
+      if (!trimmed) return "Password is required.";
+      if (trimmed.length < 8) return "Password must be at least 8 characters.";
+      if (trimmed.length > 128) return "Password must be under 128 characters.";
+      return "";
+    }
+    case "confirmPassword": {
+      if (mode === "sign-in") return "";
+      if (!trimmed) return "Please confirm your password.";
+      if (trimmed.length < 8) return "Confirm password must be at least 8 characters.";
+      return "";
+    }
+    default:
+      return "";
+  }
+};
+
+const validateForm = (data: typeof initialForm, mode: AuthMode): AuthErrors => {
+  const nextErrors: AuthErrors = {};
+
+  (Object.keys(initialForm) as AuthFieldName[]).forEach((field) => {
+    const error = validateField(field, data[field], mode);
+    if (error) {
+      nextErrors[field] = error;
+    }
+  });
+
+  if (mode === "sign-up") {
+    if (data.password && data.confirmPassword && data.password !== data.confirmPassword) {
+      nextErrors.confirmPassword = "Passwords do not match.";
+    }
+  }
+
+  return nextErrors;
+};
+
+const getFieldClassName = (fieldName: AuthFieldName, errors: AuthErrors) => {
+  const hasError = Boolean(errors[fieldName]);
+
+  return [
+    "w-full border bg-[#fbfdff] px-4 py-3.5 font-normal outline-none transition",
+    hasError ? "border-red-400 focus:border-red-500" : "border-[#cfe0ee] focus:border-[#0b78b7]",
+  ].join(" ");
+};
+
 export default function AuthPanel() {
+  const router = useRouter();
+  const { success, error } = useToast();
+  const { login, getDashboardPath } = useAuth();
   const [mode, setMode] = useState<AuthMode>("sign-in");
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [form, setForm] = useState(initialForm);
+  const [errors, setErrors] = useState<AuthErrors>({});
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const isSignIn = mode === "sign-in";
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target;
+    const fieldName = name as AuthFieldName;
+
+    setForm((current) => ({ ...current, [fieldName]: value }));
+
+    const nextError = validateField(fieldName, value, mode);
+    setErrors((current) => ({
+      ...current,
+      [fieldName]: nextError || undefined,
+    }));
+
+    if (fieldName === "password" && mode === "sign-up" && form.confirmPassword) {
+      const confirmError =
+        value !== form.confirmPassword ? "Passwords do not match." : "";
+      setErrors((current) => ({
+        ...current,
+        confirmPassword: confirmError || undefined,
+      }));
+    }
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const nextErrors = validateForm(form, mode);
+    setErrors(nextErrors);
+
+    if (Object.keys(nextErrors).length > 0) {
+      error("Please fix the highlighted fields before continuing.");
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      if (mode === "sign-in") {
+        const response = await authApi.signin({
+          email: form.email.trim(),
+          password: form.password,
+        });
+
+        const authPayload = response.data;
+        if (authPayload) {
+          login(authPayload);
+        }
+
+        success("Sign in successful", "Welcome back to OMYTECH.");
+        router.push(getDashboardPath(authPayload?.user.role ?? "USER"));
+        return;
+      }
+
+      const response = await authApi.signup({
+        name: form.name.trim(),
+        email: form.email.trim(),
+        password: form.password,
+        confirmPassword: form.confirmPassword,
+      });
+
+      const authPayload = response.data;
+      if (authPayload) {
+        login(authPayload);
+      }
+
+      success("Account created", "Your profile is ready. Welcome aboard.");
+      router.push(getDashboardPath(authPayload?.user.role ?? "USER"));
+    } catch (submissionError) {
+      const message =
+        submissionError instanceof Error
+          ? submissionError.message
+          : "Your request could not be completed right now.";
+
+      error("Unable to continue", message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleGoogleLogin = () => {
+    window.location.assign(`${API_BASE_URL}/auth/google`);
+  };
 
   return (
     <main className="flex flex-1 items-center bg-[#f5f8fc] px-4 py-12 text-[#071a2d] sm:px-6 sm:py-16 lg:px-8">
@@ -98,6 +264,7 @@ export default function AuthPanel() {
 
               <button
                 type="button"
+                onClick={handleGoogleLogin}
                 className="mt-7 inline-flex w-full items-center justify-center gap-3 border border-[#cfe0ee] bg-white px-4 py-3.5 text-sm font-semibold transition-colors hover:border-[#8cc8e5] hover:bg-[#fbfdff]"
               >
                 <FaGoogle
@@ -114,7 +281,7 @@ export default function AuthPanel() {
                 <span className="h-px flex-1 bg-[#e6eef5]" />
               </div>
 
-              <form className="grid gap-5">
+              <form className="grid gap-5" onSubmit={handleSubmit}>
                 {!isSignIn && (
                   <label className="grid gap-2 text-sm font-semibold">
                     Full name
@@ -122,9 +289,18 @@ export default function AuthPanel() {
                       name="name"
                       type="text"
                       required
+                      aria-invalid={Boolean(errors.name)}
+                      aria-describedby={errors.name ? "auth-name-error" : undefined}
                       placeholder="Jane Doe"
-                      className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none transition focus:border-[#0b78b7]"
+                      value={form.name}
+                      onChange={handleChange}
+                      className={getFieldClassName("name", errors)}
                     />
+                    {errors.name ? (
+                      <span id="auth-name-error" className="text-xs font-medium text-red-600">
+                        {errors.name}
+                      </span>
+                    ) : null}
                   </label>
                 )}
 
@@ -134,9 +310,18 @@ export default function AuthPanel() {
                     name="email"
                     type="email"
                     required
+                    aria-invalid={Boolean(errors.email)}
+                    aria-describedby={errors.email ? "auth-email-error" : undefined}
                     placeholder="jane@company.com"
-                    className="border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 font-normal outline-none transition focus:border-[#0b78b7]"
+                    value={form.email}
+                    onChange={handleChange}
+                    className={getFieldClassName("email", errors)}
                   />
+                  {errors.email ? (
+                    <span id="auth-email-error" className="text-xs font-medium text-red-600">
+                      {errors.email}
+                    </span>
+                  ) : null}
                 </label>
 
                 <label className="grid gap-2 text-sm font-semibold">
@@ -147,8 +332,12 @@ export default function AuthPanel() {
                       type={passwordVisible ? "text" : "password"}
                       required
                       minLength={8}
+                      aria-invalid={Boolean(errors.password)}
+                      aria-describedby={errors.password ? "auth-password-error" : undefined}
                       placeholder="At least 8 characters"
-                      className="w-full border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 pr-12 font-normal outline-none transition focus:border-[#0b78b7]"
+                      value={form.password}
+                      onChange={handleChange}
+                      className={`${getFieldClassName("password", errors)} pr-12`}
                     />
                     <button
                       type="button"
@@ -165,6 +354,11 @@ export default function AuthPanel() {
                       )}
                     </button>
                   </span>
+                  {errors.password ? (
+                    <span id="auth-password-error" className="text-xs font-medium text-red-600">
+                      {errors.password}
+                    </span>
+                  ) : null}
                 </label>
 
                 {!isSignIn && (
@@ -176,8 +370,12 @@ export default function AuthPanel() {
                         type={confirmPasswordVisible ? "text" : "password"}
                         required
                         minLength={8}
+                        aria-invalid={Boolean(errors.confirmPassword)}
+                        aria-describedby={errors.confirmPassword ? "auth-confirm-password-error" : undefined}
                         placeholder="Repeat your password"
-                        className="w-full border border-[#cfe0ee] bg-[#fbfdff] px-4 py-3.5 pr-12 font-normal outline-none transition focus:border-[#0b78b7]"
+                        value={form.confirmPassword}
+                        onChange={handleChange}
+                        className={`${getFieldClassName("confirmPassword", errors)} pr-12`}
                       />
                       <button
                         type="button"
@@ -198,25 +396,31 @@ export default function AuthPanel() {
                         )}
                       </button>
                     </span>
+                    {errors.confirmPassword ? (
+                      <span id="auth-confirm-password-error" className="text-xs font-medium text-red-600">
+                        {errors.confirmPassword}
+                      </span>
+                    ) : null}
                   </label>
                 )}
 
                 {isSignIn && (
                   <div className="-mt-1 text-right">
-                    <a
-                      href="mailto:info@omytechkenya.co.ke?subject=Password%20reset"
+                    <Link
+                      href="/forgot-password"
                       className="text-sm font-semibold text-[#0b78b7] hover:text-[#071a2d]"
                     >
                       Forgot password?
-                    </a>
+                    </Link>
                   </div>
                 )}
 
                 <button
                   type="submit"
-                  className="inline-flex w-full items-center justify-center gap-3 bg-[#071a2d] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#12385b]"
+                  disabled={isSubmitting}
+                  className="inline-flex w-full items-center justify-center gap-3 bg-[#071a2d] px-6 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#12385b] disabled:cursor-not-allowed disabled:opacity-70"
                 >
-                  {isSignIn ? "Sign in" : "Create account"}
+                  {isSubmitting ? (isSignIn ? "Signing in..." : "Creating account...") : isSignIn ? "Sign in" : "Create account"}
                   <FiArrowRight className="h-4 w-4" aria-hidden="true" />
                 </button>
               </form>

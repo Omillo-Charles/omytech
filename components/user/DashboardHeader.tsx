@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { FiMenu, FiPlus, FiSearch, FiX } from "react-icons/fi";
 import type { DashboardView } from "./dashboardData";
 
@@ -9,12 +9,36 @@ type DashboardHeaderProps = {
     onOpenMenu: () => void;
 };
 
+const panelActions: Record<DashboardView, { label: string; href: string }> = {
+    Overview: { label: "New request", href: "/quote" },
+    Projects: { label: "New project", href: "/quote" },
+    Quotes: { label: "New quote", href: "/quote" },
+    Payments: { label: "New payment", href: "/contact" },
+    Files: { label: "Upload file", href: "/contact" },
+    Contacts: { label: "New message", href: "/contact" },
+    Referrals: { label: "Invite friend", href: "/contact" },
+    Settings: { label: "", href: "/contact" },
+};
+
 export default function DashboardHeader({
     activeView,
     onOpenMenu,
 }: DashboardHeaderProps) {
     const [searchOpen, setSearchOpen] = useState(false);
     const searchInputRef = useRef<HTMLInputElement>(null);
+
+    const todayLabel = useMemo(
+        () =>
+            new Date().toLocaleDateString("en-GB", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+            }),
+        [],
+    );
+
+    const action = panelActions[activeView];
 
     useEffect(() => {
         if (searchOpen) {
@@ -34,7 +58,7 @@ export default function DashboardHeader({
                     <FiMenu className="h-5 w-5" />
                 </button>
                 <div>
-                    <p className="text-sm text-[#6b7d90]">Monday, September 21, 2026</p>
+                    <p className="text-sm text-[#6b7d90]">{todayLabel}</p>
                     <h1
                         className="mt-1 text-2xl font-black sm:text-3xl"
                         style={{
@@ -57,13 +81,27 @@ export default function DashboardHeader({
                             onKeyDown={(event) => event.key === "Escape" && setSearchOpen(false)}
                             className="min-w-0 flex-1 bg-transparent px-2 text-sm outline-none placeholder:text-[#9aabba]"
                         />
-                        <button type="button" aria-label="Close search" onClick={() => setSearchOpen(false)} className="p-1 text-[#6b7d90] hover:text-[#071a2d]"><FiX className="h-4 w-4" /></button>
+                        <button type="button" aria-label="Close search" onClick={() => setSearchOpen(false)} className="p-1 text-[#6b7d90] hover:text-[#071a2d]">
+                            <FiX className="h-4 w-4" />
+                        </button>
                     </div>
                 </div>
             ) : (
                 <div className="flex items-center gap-2 sm:gap-4">
-                    <button type="button" aria-label="Open search" onClick={() => setSearchOpen(true)} className="p-2 text-[#536579] hover:text-[#071a2d]"><FiSearch className="h-5 w-5" /></button>
-                    <a href="/quote" className="hidden items-center gap-2 bg-[#071a2d] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#12385b] sm:inline-flex"><FiPlus className="h-4 w-4" /> New request</a>
+                    {activeView !== "Settings" && (
+                        <button type="button" aria-label="Open search" onClick={() => setSearchOpen(true)} className="p-2 text-[#536579] hover:text-[#071a2d]">
+                            <FiSearch className="h-5 w-5" />
+                        </button>
+                    )}
+                    {activeView !== "Settings" && (
+                        <a
+                            href={action.href}
+                            className="hidden items-center gap-2 bg-[#071a2d] px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-[#12385b] sm:inline-flex"
+                        >
+                            <FiPlus className="h-4 w-4" />
+                            {action.label}
+                        </a>
+                    )}
                 </div>
             )}
         </header>

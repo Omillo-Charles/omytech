@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import AccessGuard from "../../../components/auth/AccessGuard";
 import AdminDashboard from "../../../components/admin/AdminDashboard";
 
 export const metadata: Metadata = {
@@ -6,5 +7,9 @@ export const metadata: Metadata = {
 };
 
 export default function AdminAccountPage() {
-    return <AdminDashboard />;
+    return (
+        <AccessGuard>
+            <AdminDashboard />
+        </AccessGuard>
+    );
 }
