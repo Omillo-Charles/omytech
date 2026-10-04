@@ -1,10 +1,10 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useAuth } from "../../../../contexts/AuthContext";
 
-export default function GoogleCallbackPage() {
+function GoogleCallbackContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { login, getDashboardPath } = useAuth();
@@ -39,5 +39,22 @@ export default function GoogleCallbackPage() {
                 <p className="mt-3 text-sm text-[#6b7d90]">{message}</p>
             </div>
         </main>
+    );
+}
+
+export default function GoogleCallbackPage() {
+    return (
+        <Suspense
+            fallback={
+                <main className="flex min-h-[60vh] items-center justify-center bg-[#f5f8fc] px-4 py-12 text-[#071a2d]">
+                    <div className="rounded-2xl border border-[#dce5ef] bg-white px-8 py-10 text-center shadow-[0_20px_50px_rgba(7,26,45,0.08)]">
+                        <p className="text-sm font-semibold uppercase tracking-[0.2em] text-[#0b78b7]">Please wait</p>
+                        <h1 className="mt-4 text-2xl font-black">Loading sign-in</h1>
+                    </div>
+                </main>
+            }
+        >
+            <GoogleCallbackContent />
+        </Suspense>
     );
 }

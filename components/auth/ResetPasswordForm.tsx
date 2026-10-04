@@ -1,7 +1,7 @@
 "use client";
 
-import { useSearchParams, useRouter } from "next/navigation";
-import { useState, type ChangeEvent, type FormEvent } from "react";
+import { Suspense, useState, type ChangeEvent, type FormEvent } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
 import { FiEye, FiEyeOff, FiLock } from "react-icons/fi";
 import { authApi } from "../../config/api";
 import { useToast } from "../../contexts/ToastContext";
@@ -13,7 +13,7 @@ const getPasswordError = (value: string) => {
     return "";
 };
 
-export default function ResetPasswordForm() {
+function ResetPasswordFormContent() {
     const router = useRouter();
     const searchParams = useSearchParams();
     const { error, success } = useToast();
@@ -186,5 +186,21 @@ export default function ResetPasswordForm() {
                 {isSubmitting ? "Updating password..." : "Update password"}
             </button>
         </form>
+    );
+}
+
+export default function ResetPasswordForm() {
+    return (
+        <Suspense
+            fallback={
+                <div className="grid gap-6">
+                    <div className="h-14 animate-pulse rounded-md bg-[#edf3f8]" />
+                    <div className="h-14 animate-pulse rounded-md bg-[#edf3f8]" />
+                    <div className="h-12 animate-pulse rounded-md bg-[#edf3f8]" />
+                </div>
+            }
+        >
+            <ResetPasswordFormContent />
+        </Suspense>
     );
 }
