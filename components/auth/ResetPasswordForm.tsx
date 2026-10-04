@@ -154,8 +154,8 @@ function ResetPasswordFormContent() {
                         aria-describedby={confirmPasswordError ? "reset-confirm-password-error" : undefined}
                         placeholder="Repeat your new password"
                         className={`w-full border bg-[#fbfdff] py-3.5 pl-11 pr-12 font-normal outline-none transition ${confirmPasswordError
-                                ? "border-red-400 focus:border-red-500"
-                                : "border-[#cfe0ee] focus:border-[#0b78b7]"
+                            ? "border-red-400 focus:border-red-500"
+                            : "border-[#cfe0ee] focus:border-[#0b78b7]"
                             }`}
                     />
                     <button
