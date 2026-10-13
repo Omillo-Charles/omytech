@@ -102,6 +102,13 @@ a {
   transform: translate3d(32px, 0, 0);
 }
 
+@media (max-width: 767px) {
+  [data-scroll-reveal][data-reveal-visible="false"][data-reveal-variant="left"],
+  [data-scroll-reveal][data-reveal-visible="false"][data-reveal-variant="right"] {
+    transform: translate3d(0, 30px, 0);
+  }
+}
+
 [data-scroll-reveal][data-reveal-visible="false"][data-reveal-variant="scale"] {
   transform: scale(0.94);
   filter: blur(10px);
