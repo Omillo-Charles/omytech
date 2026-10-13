@@ -9,7 +9,7 @@
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-mulish);
-  --font-mono: var(--font-glacial-indifference);
+  --font-heading: var(--font-outfit);
 }
 
 html {
@@ -28,4 +28,109 @@ body {
 
 a {
   text-decoration: none;
+}
+
+.hero-background {
+  animation: hero-image-enter 1800ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-shade {
+  animation: hero-shade-enter 1100ms ease-out both;
+}
+
+.hero-wave {
+  animation: hero-wave-enter 950ms 250ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes hero-image-enter {
+  from {
+    opacity: 0.45;
+    transform: scale(1.12);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.025);
+  }
+}
+
+@keyframes hero-shade-enter {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hero-wave-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+[data-scroll-reveal] {
+  transition:
+    opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 850ms cubic-bezier(0.22, 1, 0.36, 1),
+    filter 850ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform, filter;
+}
+
+[data-scroll-reveal][data-reveal-visible="false"] {
+  opacity: 0;
+  filter: blur(8px);
+}
+
+[data-scroll-reveal][data-reveal-visible="false"][data-reveal-variant="up"] {
+  transform: translate3d(0, 30px, 0) scale(0.985);
+}
+
+[data-scroll-reveal][data-reveal-visible="false"][data-reveal-variant="left"] {
+  transform: translate3d(-32px, 0, 0);
+}
+
+[data-scroll-reveal][data-reveal-visible="false"][data-reveal-variant="right"] {
+  transform: translate3d(32px, 0, 0);
+}
+
+[data-scroll-reveal][data-reveal-visible="false"][data-reveal-variant="scale"] {
+  transform: scale(0.94);
+  filter: blur(10px);
+}
+
+[data-scroll-reveal][data-reveal-visible="true"] {
+  opacity: 1;
+  filter: blur(0);
+  transform: translate3d(0, 0, 0) scale(1);
+  will-change: auto;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .hero-background,
+  .hero-shade,
+  .hero-wave {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  [data-scroll-reveal],
+  [data-scroll-reveal][data-reveal-visible="false"],
+  [data-scroll-reveal][data-reveal-visible="true"] {
+    opacity: 1;
+    filter: none;
+    transform: none;
+    transition: none;
+    will-change: auto;
+  }
 }

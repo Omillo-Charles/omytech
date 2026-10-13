@@ -1,11 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import Footer from "../components/ui/Footer";
-import Navbar from "../components/ui/Navbar";
-import { AuthProvider } from "../contexts/AuthContext";
-import { ModalProvider } from "../contexts/ModalContext";
-import { ToastProvider } from "../contexts/ToastContext";
-import { glacialIndifference, mulish } from "../config/fonts";
+import Footer from "../components/Footer";
+import Navbar from "../components/Navbar";
+import { mulish, outfit } from "../config/fonts";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://omytechkenya.co.ke"),
@@ -131,7 +128,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${glacialIndifference.variable} ${mulish.variable} h-full antialiased`}
+      className={`${mulish.variable} ${outfit.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-white text-slate-900">
         <script
@@ -142,15 +139,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
-        <AuthProvider>
-          <ToastProvider>
-            <ModalProvider>
-              <Navbar />
-              {children}
-              <Footer />
-            </ModalProvider>
-          </ToastProvider>
-        </AuthProvider>
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );

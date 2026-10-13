@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import CtaSection from "../components/home/CtaSection";
-import Hero from "../components/home/Hero";
-import ProcessSection from "../components/home/ProcessSection";
-import ServicesSection from "../components/home/ServicesSection";
-import WhyChooseUsSection from "../components/home/WhyChooseUsSection";
+import AboutSection from "../components/AboutSection";
+import ContactSection from "../components/ContactSection";
+import Hero from "../components/Hero";
+import Portfolio from "../components/Portfolio";
+import WhyChooseUs from "../components/WhyChooseUs";
 
 export const metadata: Metadata = {
   title: "Web, Mobile & Software Development in Kenya",
@@ -18,10 +18,10 @@ export default function Home() {
   return (
     <main className="flex flex-1 flex-col">
       <Hero />
-      <ServicesSection />
-      <WhyChooseUsSection />
-      <ProcessSection />
-      <CtaSection />
+      <WhyChooseUs />
+      <Portfolio />
+      <AboutSection />
+      <ContactSection />
     </main>
   );
 }
