@@ -26,7 +26,7 @@ export default function Hero() {
                 <ScrollReveal delay={0} variant="up">
                     <p className="mb-5 inline-flex items-center gap-3 text-[10px] font-bold uppercase text-cyan-200 sm:text-xs">
                         <span aria-hidden="true" className="h-px w-8 bg-cyan-300" />
-                        We build software the scales
+                        We build software that scales
                         <span aria-hidden="true" className="h-px w-8 bg-cyan-300" />
                     </p>
                 </ScrollReveal>
